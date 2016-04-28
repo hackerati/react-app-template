@@ -11,7 +11,7 @@ Basic React application template, including:
 ```bash
 % git clone git@github.com:thehackerati/react-app-template.git my_app
 % cd my_app
-& npm install
+% npm install
 % npm start
 % open http://localhost:3000
 ```
