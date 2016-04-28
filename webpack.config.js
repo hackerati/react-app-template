@@ -17,12 +17,6 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ],
-  resolve: {
-    alias: {
-      'redux-devtools': path.join(__dirname, '..', '..', 'src'),
-      'react': path.join(__dirname, 'node_modules', 'react')
-    }
-  },
   resolveLoader: {
     'fallback': path.join(__dirname, 'node_modules')
   },
@@ -35,7 +29,7 @@ module.exports = {
     }, {
       test: /\.js$/,
       loaders: ['babel'],
-      include: path.join(__dirname, '..', '..', 'src')
+      include: path.join(__dirname, 'src')
     }]
   }
 };

@@ -29,7 +29,10 @@
   "homepage": "https://github.com/thehackerati/react-app-template#readme",
   "dependencies": {
     "react": "^15.0.1",
-    "react-dom": "^15.0.1"
+    "react-dom": "^15.0.1",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2",
+    "redux-thunk": "^2.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.3.17",
@@ -39,6 +42,7 @@
     "babel-preset-stage-0": "^6.3.13",
     "node-libs-browser": "^0.5.2",
     "react-hot-loader": "^3.0.0-alpha.8",
+    "redux-devtools": "^3.2.0",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1"
   }
