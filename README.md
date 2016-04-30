@@ -1,6 +1,7 @@
 # React App Template
 
 Basic React application template, including:
+- Redux
 - Babel
 - ES6
 - Webpack
@@ -17,7 +18,6 @@ Basic React application template, including:
 ```
 
 ## TODO
-- integrate Redux
 - integrate testing frameworks
 - integrate TravisCI
 - deploy to S3 & CloudFront
