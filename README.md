@@ -23,5 +23,11 @@ Basic React application template, including:
 - deploy to S3 & CloudFront
 - add styling
 
+## Resources & Credits
+- [ReactJS](https://facebook.github.io/react/)
+- [Redux](http://redux.js.org/index.html)
+- [Redux DevTools](https://github.com/gaearon/redux-devtools)
+- [Getting Started With Redux, by Jérôme Chapron](http://www.jchapron.com/2015/08/14/getting-started-with-redux/)
+
 ## License
 Copyright (c) 2016 Hackerati. This software is licensed under the MIT License.
