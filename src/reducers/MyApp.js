@@ -1,5 +1,7 @@
-const initialState = {};
+'use strict'
 
-export default function MyApp(state = initialState, action) {
-    return state;
+const initialState = {}
+
+export default function MyApp (state = initialState, action) {
+    return state
 }
