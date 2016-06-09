@@ -7,13 +7,26 @@ Basic React application template, including:
 - Webpack
 - Hot Reloader
 
-## Build Your Own Project
+## Start Your Own Project
 
 ```bash
 % git clone git@github.com:thehackerati/react-app-template.git my_app
 % cd my_app
 % npm install
+```
+
+## Run in development mode
+
+```bash
 % npm start
+% open http://localhost:3000
+```
+
+## Run in production mode
+
+```bash
+% npm run build
+% NODE_ENV='production' npm start
 % open http://localhost:3000
 ```
 

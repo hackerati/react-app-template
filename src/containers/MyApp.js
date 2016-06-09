@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+'use strict'
+
+import React, { Component } from 'react'
 
 export default class MyApp extends Component {
-  render() {
+  render () {
     return (
       <h1>Hello, world!</h1>
-    );
+    )
   }
 }
