@@ -2,7 +2,9 @@
 
 import { Map } from 'immutable'
 
-import { INCREMENT_COUNTER, DECREMENT_COUNTER, INCREMENT_COUNTER_IF_ODD } from '../constants/ActionTypes';
+import { INCREMENT_COUNTER,
+         DECREMENT_COUNTER,
+         INCREMENT_COUNTER_IF_ODD } from '../constants/ActionTypes';
 
 export default function counter (state, action) {
     switch (action.type) {

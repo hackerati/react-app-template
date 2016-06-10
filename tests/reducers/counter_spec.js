@@ -1,10 +1,12 @@
 'use strict'
 
-import {expect} from 'chai'
-import {Map, fromJS} from 'immutable'
+import { expect } from 'chai'
+import { Map, fromJS } from 'immutable'
 
 import counter from '../../src/reducers/counter'
-import { INCREMENT_COUNTER, DECREMENT_COUNTER, INCREMENT_COUNTER_IF_ODD } from '../../src/constants/ActionTypes';
+import { INCREMENT_COUNTER,
+         DECREMENT_COUNTER,
+         INCREMENT_COUNTER_IF_ODD } from '../../src/constants/ActionTypes';
 
 describe ('counter reducer', () => {
     it ('should handle initial state', () => {

@@ -1,19 +1,23 @@
-import { INCREMENT_COUNTER, DECREMENT_COUNTER, INCREMENT_COUNTER_IF_ODD } from '../constants/ActionTypes';
+'use strict'
 
-export function increment() {
+import { INCREMENT_COUNTER,
+         DECREMENT_COUNTER,
+         INCREMENT_COUNTER_IF_ODD } from '../constants/ActionTypes'
+
+export function increment () {
   return {
     type: INCREMENT_COUNTER
-  };
+  }
 }
 
-export function decrement() {
+export function decrement () {
   return {
     type: DECREMENT_COUNTER
-  };
+  }
 }
 
-export function incrementIfOdd() {
+export function incrementIfOdd () {
   return {
     type: INCREMENT_COUNTER_IF_ODD
-  };
+  }
 }
