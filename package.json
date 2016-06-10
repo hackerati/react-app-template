@@ -4,7 +4,7 @@
   "description": "Application template for React`",
   "main": "server.js",
   "scripts": {
-    "test": "eslint .; mocha tests --recursive",
+    "test": "eslint .; mocha tests --compilers js:babel-core/register --require ./tests/test_helper.js  --recursive",
     "build": "webpack --config webpack.config.prod.js --progress --profile --colors",
     "start": "node server"
   },
@@ -15,13 +15,16 @@
   "keywords": [
     "react",
     "redux",
+    "immutable",
     "boilerplate",
     "hot",
     "reload",
     "babel",
     "webpack",
     "es6",
-    "es2015"
+    "es2015",
+    "mocha",
+    "chai"
   ],
   "author": "Geoff Scott <geoff@hackerati.us> (http://github.com/geoffscott)",
   "license": "MIT",
@@ -30,6 +33,7 @@
   },
   "homepage": "https://github.com/thehackerati/react-app-template#readme",
   "dependencies": {
+    "immutable": "^3.8.1",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-redux": "^4.4.5",
@@ -37,6 +41,7 @@
     "redux-thunk": "^2.0.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.9.0",
     "babel-core": "^6.3.17",
     "babel-eslint": "^6.0.4",
     "babel-loader": "^6.2.0",
@@ -44,9 +49,11 @@
     "babel-preset-react": "6.3.13",
     "babel-preset-stage-0": "^6.3.13",
     "chai": "^3.5.0",
+    "chai-immutable": "^1.5.4",
     "eslint": "^2.11.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.19.0",
+    "mocha": "^2.5.3",
     "node-libs-browser": "^0.5.2",
     "react-hot-loader": "^3.0.0-alpha.8",
     "redux-devtools": "^3.2.0",
