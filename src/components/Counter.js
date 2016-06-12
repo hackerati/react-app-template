@@ -10,8 +10,7 @@ class Counter extends Component {
   }
 
   incrementIfOdd() {
-    console.log (this.props.value)
-    if (this.props.value.get ('value') % 2 !== 0) {
+    if (this.props.value % 2 !== 0) {
       this.props.increment()
     }
   }
