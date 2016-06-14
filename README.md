@@ -39,9 +39,10 @@ $ open http://localhost:3000
 If you're new you React + Redux, try our [tutorial] (https://www.gitbook.com/book/hackerati/react-tutorial/details).
 
 ## TODO
-[ ] add tutorial branch to build a todo app
-[ ] integrate TravisCI
-[ ]- deploy to S3 & CloudFront
+
+- [ ] add tutorial branch to build a todo app
+- [ ] integrate TravisCI
+- [ ] deploy to S3 & CloudFront
 
 ## Resources & Credits
 - [ReactJS](https://facebook.github.io/react/)
