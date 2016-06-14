@@ -3,8 +3,8 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import Counter from '../counter/components/Counter'
-import * as CounterActions from '../counter/actions'
+import Counter from './Counter'
+import * as CounterActions from '../actions'
 
 class CounterApp extends Component {
   render () {
