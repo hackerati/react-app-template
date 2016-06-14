@@ -3,8 +3,8 @@
 import { expect } from 'chai'
 import { Map, fromJS } from 'immutable'
 
-import counter from '../../src/reducers/counter'
-import { INCREMENT_COUNTER, DECREMENT_COUNTER } from '../../src/constants/ActionTypes';
+import counter from '../../src/counter/reducer'
+import { INCREMENT_COUNTER, DECREMENT_COUNTER } from '../../src/counter/ActionTypes';
 
 describe ('Counter reducer', () => {
     it ('should handle initial state', () => {

@@ -1,8 +1,8 @@
 'use strict'
 
 import { expect } from 'chai'
-import * as actions from '../../src/actions/CounterActions'
-import * as types from '../../src/constants/ActionTypes'
+import * as actions from '../../src/counter/actions'
+import * as types from '../../src/counter/ActionTypes'
 
 describe ('Counter actions', () => {
     it ('should create an action to increment the counter', () => {

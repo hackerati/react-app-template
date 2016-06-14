@@ -4,7 +4,7 @@ import React from 'react'
 import { expect } from 'chai'
 import sinon from 'sinon'
 import { shallow } from 'enzyme'
-import Counter from '../../src/components/Counter'
+import Counter from '../../src/counter/components/Counter'
 
 function setup(value = 0) {
   const actions = {
