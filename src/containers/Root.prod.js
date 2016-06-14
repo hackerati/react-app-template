@@ -2,7 +2,8 @@
 
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import CounterApp from '../counter/CounterApp'
+import counter from '../counter'
+const { CounterApp } = counter.components.default
 
 export default class Root extends Component {
   render () {
