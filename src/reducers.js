@@ -1,10 +1,10 @@
 'use strict'
 
 import { combineReducers } from 'redux'
-import MyApp from './MyApp'
+import counter from './counter'
 
 const rootReducer = combineReducers ({
-  MyApp
-})
+    counter: counter.reducer
+});
 
 export default rootReducer
