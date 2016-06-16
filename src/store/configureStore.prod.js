@@ -3,9 +3,15 @@
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import rootReducer from '../reducers'
+import Reactotron from 'reactotron'
 
-const enhancer = applyMiddleware (thunk)
+const enhancer = compose (
+  Reactotron.storeEnhancer(),
+  applyMiddleware (thunk)
+)
 
 export default function configureStore (initialState) {
-  return createStore (rootReducer, initialState, enhancer)
+  const store = createStore (rootReducer, initialState, enhancer)
+  Reactotron.addReduxStore(store)
+  return (store)
 }

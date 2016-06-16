@@ -4,6 +4,7 @@
   "description": "Application template for React`",
   "main": "server.js",
   "scripts": {
+    "monitor": "node_modules/.bin/reactotron",
     "test": "eslint .; mocha tests --compilers js:babel-core/register --require ./tests/test_helper.js  --recursive",
     "build": "webpack --config webpack.config.prod.js --progress --profile --colors",
     "start": "node server"
@@ -60,6 +61,7 @@
     "node-libs-browser": "^0.5.2",
     "react-addons-test-utils": "^15.1.0",
     "react-hot-loader": "^3.0.0-alpha.8",
+    "reactotron": "^0.6.1",
     "redux-devtools": "^3.2.0",
     "redux-devtools-dock-monitor": "^1.1.1",
     "redux-devtools-log-monitor": "^1.0.11",

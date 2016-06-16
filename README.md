@@ -6,6 +6,8 @@ Basic React application template, including:
 - ImmutableJS
 - Babel
 - ES6
+- Node
+- Express
 - Webpack
 - Hot Reloader
 - Mocha & Chai
@@ -38,11 +40,24 @@ $ open http://localhost:3000
 
 If you're new you React + Redux, try our [tutorial] (https://www.gitbook.com/book/hackerati/react-tutorial/details).
 
-## TODO
+## What's Inside
 
-- [ ] add tutorial branch to build a todo app
-- [ ] integrate TravisCI
-- [ ] deploy to S3 & CloudFront
+```bash
+.
+├── index.html                  # Single page for the application
+├── server.js                   # Express server
+├── src
+│   ├── containers              # Root container
+│   ├── counter                 # Placeholder app, implements simple immutable counter
+│   ├── index.js                # Start the app by rendering the  AppContainer
+│   ├── reducers.js             # Root reducer, combines app reducers
+│   └── store                   # Single store
+├── tests
+│   ├── counter                 # Tests for placeholder app
+│   └── test_helper.js          # Shared test utils
+├── webpack.config.dev.js       # Webpack config for development
+└── webpack.config.prod.js      # Webpack config for production
+```
 
 ## Resources & Credits
 - [ReactJS](https://facebook.github.io/react/)
