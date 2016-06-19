@@ -59,4 +59,13 @@ describe ('TodoTextInput component', () => {
       expect(props.onSave.called).to.be.true
       expect(props.onSave.args[0][0]).to.equal('new task')
     })
+
+    it('should reset state on return key press if newTodo', () => {
+      const { props, component } = setup ({ newTodo: true })
+      component.find('input').at(0).simulate ('keydown', { which: 13, // RETURN KEY
+                                                           target: {
+                                                             value: 'new task'
+                                                           }})
+      expect(component.find('input').at(0).prop('value')).to.equal('')
+    })
 })
