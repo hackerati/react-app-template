@@ -15,7 +15,8 @@ class TodoTextInput extends Component {
     return (
       <input className={
         classnames({
-          edit: this.props.editing
+          edit: this.props.editing,
+          newTodo: this.props.newTodo
         })}
         type="text"
         placeholder={this.props.placeholder}
@@ -29,6 +30,7 @@ TodoTextInput.propTypes = {
   text: PropTypes.string,
   placeholder: PropTypes.string,
   editing: PropTypes.bool,
+  newTodo: PropTypes.bool
 }
 
 export default TodoTextInput

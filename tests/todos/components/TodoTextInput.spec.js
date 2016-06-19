@@ -9,7 +9,8 @@ function setup (propOverrides) {
   const props = Object.assign({
     text: 'my task',
     placeholder: 'do it',
-    editing: false
+    editing: false,
+    newTodo: false
   }, propOverrides)
 
   const component = shallow (
@@ -33,5 +34,10 @@ describe ('TodoTextInput component', () => {
     it ('should render correctly when editing=true', () => {
       const { component } = setup ({ editing: true })
       expect(component.find('input').at(0).prop('className')).to.equal('edit')
+    })
+
+    it('should render correctly when newTodo is true', () => {
+      const { component } = setup ({ newTodo: true })
+      expect(component.find('input').at(0).prop('className')).to.equal('newTodo')
     })
 })
