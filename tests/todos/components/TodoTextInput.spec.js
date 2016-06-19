@@ -68,4 +68,11 @@ describe ('TodoTextInput component', () => {
                                                            }})
       expect(component.find('input').at(0).prop('value')).to.equal('')
     })
+
+    it ('should call onSave on blur', () => {
+      const { props, component } = setup ()
+      component.find('input').at(0).simulate ('blur', { target: { value: 'new task' }})
+      expect(props.onSave.called).to.be.true
+      expect(props.onSave.args[0][0]).to.equal('new task')
+    })
 })

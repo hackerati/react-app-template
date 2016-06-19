@@ -25,6 +25,10 @@ class TodoTextInput extends Component {
     this.setState ({ text: e.target.value })
   }
 
+  handleBlur(e) {
+    this.props.onSave(e.target.value)
+  }
+
   render() {
     return (
       <input className={
@@ -37,6 +41,7 @@ class TodoTextInput extends Component {
         value={this.state.text}
         onChange={this.handleChange.bind(this)}
         onKeyDown={this.handleSubmit.bind(this)}
+        onBlur={this.handleBlur.bind(this)}
         />
     )
   }
