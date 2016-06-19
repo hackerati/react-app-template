@@ -3,10 +3,12 @@
 import React from 'react'
 import { expect } from 'chai'
 import { shallow } from 'enzyme'
+import sinon from 'sinon'
 import TodoTextInput from '../../../src/todos/components/TodoTextInput'
 
 function setup (propOverrides) {
   const props = Object.assign({
+    onSave: sinon.spy (),
     text: 'my task',
     placeholder: 'do it',
     editing: false,
@@ -18,6 +20,7 @@ function setup (propOverrides) {
   )
 
   return {
+    props: props,
     component: component,
   }
 }
@@ -45,5 +48,14 @@ describe ('TodoTextInput component', () => {
       const { props, component } = setup ()
       component.find('input').at(0).simulate ('change', { target: { value: 'task' }})
       expect(component.find('input').at(0).prop('value')).to.equal('task')
+    })
+
+    it ('should call onSave on return key press', () => {
+      const { props, component } = setup ()
+      component.find('input').at(0).simulate ('keydown', { which: 13, // RETURN KEY
+                                                           target: {
+                                                             value: 'new task'
+                                                           }})
+      expect(props.onSave.called).to.be.true
     })
 })

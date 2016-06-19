@@ -11,6 +11,16 @@ class TodoTextInput extends Component {
     }
   }
 
+  handleSubmit(e) {
+    const text = e.target.value.trim()
+    if (e.which === 13) {
+      this.props.onSave(text)
+      if (this.props.newTodo) {
+        this.setState({ text: '' })
+      }
+    }
+  }
+
   handleChange(e) {
     this.setState ({ text: e.target.value })
   }
@@ -26,12 +36,14 @@ class TodoTextInput extends Component {
         placeholder={this.props.placeholder}
         value={this.state.text}
         onChange={this.handleChange.bind(this)}
+        onKeyDown={this.handleSubmit.bind(this)}
         />
     )
   }
 }
 
 TodoTextInput.propTypes = {
+  onSave: PropTypes.func.isRequired,
   text: PropTypes.string,
   placeholder: PropTypes.string,
   editing: PropTypes.bool,
