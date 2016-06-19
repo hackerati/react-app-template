@@ -1,10 +1,10 @@
 'use strict'
 
-import { ADD } from './ActionTypes'
+import * as types from './ActionTypes'
 
 export function add (text) {
     return {
-        type: ADD,
+        type: types.ADD,
         description: text,
         completed: false
     }
