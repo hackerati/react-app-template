@@ -1,9 +1,8 @@
 language: node_js
 node_js:
   - stable
-
 env:
-- NODE_ENV='production'
-
+- NODE_ENV='development'
 install:
 - npm install
+script: "npm test"
