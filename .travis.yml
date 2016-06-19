@@ -3,6 +3,3 @@ node_js:
   - stable
 env:
 - NODE_ENV='development'
-install:
-- npm install
-script: "npm test"
