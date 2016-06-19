@@ -3,3 +3,8 @@ node_js:
   - stable
 env:
 - NODE_ENV='development'
+branches:
+  only:
+    - master
+    - release
+    - staging
