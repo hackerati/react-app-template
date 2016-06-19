@@ -11,6 +11,10 @@ class TodoTextInput extends Component {
     }
   }
 
+  handleChange(e) {
+    this.setState ({ text: e.target.value })
+  }
+
   render() {
     return (
       <input className={
@@ -21,6 +25,7 @@ class TodoTextInput extends Component {
         type="text"
         placeholder={this.props.placeholder}
         value={this.state.text}
+        onChange={this.handleChange.bind(this)}
         />
     )
   }

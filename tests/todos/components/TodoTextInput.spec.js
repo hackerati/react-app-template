@@ -40,4 +40,10 @@ describe ('TodoTextInput component', () => {
       const { component } = setup ({ newTodo: true })
       expect(component.find('input').at(0).prop('className')).to.equal('newTodo')
     })
+
+    it ('should update value on change', () => {
+      const { props, component } = setup ()
+      component.find('input').at(0).simulate ('change', { target: { value: 'task' }})
+      expect(component.find('input').at(0).prop('value')).to.equal('task')
+    })
 })
