@@ -57,5 +57,6 @@ describe ('TodoTextInput component', () => {
                                                              value: 'new task'
                                                            }})
       expect(props.onSave.called).to.be.true
+      expect(props.onSave.args[0][0]).to.equal('new task')
     })
 })
