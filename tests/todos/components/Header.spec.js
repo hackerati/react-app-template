@@ -8,11 +8,16 @@ import Header from '../../../src/todos/components/Header'
 import TodoTextInput from '../../../src/todos/components/TodoTextInput'
 
 function setup () {
+  const props = {
+    addTodo: sinon.spy ()
+  }
+
   const component = shallow (
-    <Header/>
+    <Header {...props} />
   )
 
   return {
+    props: props,
     component: component,
   }
 }
@@ -34,5 +39,12 @@ describe ('Header component', () => {
         expect(input.props.placeholder).to.equal('What needs to be done?')
     })
 
-  it ('should call addTodo if length of text is greater than 0')
+    it ('should call addTodo if length of text is greater than 0', () => {
+        const { component, props } = setup ()
+        const input = component.node.props.children[1]
+        input.props.onSave ('')
+        expect(props.addTodo.called).to.be.false
+        input.props.onSave ('Use Redux')
+        expect(props.addTodo.called).to.be.true
+    })
 })
