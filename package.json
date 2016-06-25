@@ -34,6 +34,7 @@
   },
   "homepage": "https://github.com/thehackerati/react-app-template#readme",
   "dependencies": {
+    "classnames": "^2.2.5",
     "express": "^4.13.4",
     "immutable": "^3.8.1",
     "react": "^15.1.0",
