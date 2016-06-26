@@ -52,4 +52,14 @@ describe ('TodoItem component', () => {
     button.simulate ('click')
     expect(props.deleteTodo.called).to.be.true
   })
+
+  it ('should switch to edit mode when label onDoubleClick is fired', () => {
+    const { component } = setup()
+    const label = component.find ('label')
+    label.simulate ('doubleclick')
+    expect(component.hasClass('editing')).to.be.true
+    const input = component.find ('TodoTextInput')
+    expect(input).to.have.length(1)
+    expect(input.prop('text')).to.equal('Use Redux')
+  })
 })
