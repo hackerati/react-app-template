@@ -11,8 +11,9 @@ function setup () {
     todo: {
       id: 0,
       text: 'Use Redux',
-      completed: false
+      completed: false,
     },
+    completeTodo: sinon.spy (),
   }
   const component = shallow (
     <TodoItem {...props} />
@@ -35,5 +36,12 @@ describe ('TodoItem component', () => {
     expect(div.children('label')).to.have.length(1)
     expect(div.children('label').children().text()).to.equal('Use Redux')
     expect(div.children('button')).to.have.length(1)
+  })
+
+  it ('should call completeTodo() when onChange is fired', () => {
+    const { component, props } = setup()
+    const input = component.find ('input')
+    input.simulate ('change')
+    expect(props.completeTodo.called).to.be.true
   })
 })

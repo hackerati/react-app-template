@@ -9,12 +9,13 @@ class TodoItem extends Component {
   }
 
   render() {
-    const { todo } = this.props
+    const { todo, completeTodo } = this.props
 
     return (
       <li className={ classnames ({ completed: todo.completed })}>
         <div className="view">
-          <input className="toggle" type="checkbox" checked={ todo.completed } />
+          <input className="toggle" type="checkbox" checked={ todo.completed }
+                 onChange={ () => completeTodo (todo.id) }  />
           <label>
             { todo.text }
           </label>
@@ -27,6 +28,7 @@ class TodoItem extends Component {
 
 TodoItem.propTypes = {
   todo: PropTypes.object.isRequired,
+  completeTodo: PropTypes.func.isRequired,
 }
 
 export default TodoItem
