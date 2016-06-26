@@ -31,7 +31,7 @@ describe ('TodoItem component', () => {
     const div = component.children('div')
     expect(div).to.have.length(1)
     expect(div.children('input')).to.have.length(1)
-    expect(div.children('input').prop('checked')).to.be.undefined
+    expect(div.children('input').prop('checked')).to.be.false
     expect(div.children('label')).to.have.length(1)
     expect(div.children('label').children().text()).to.equal('Use Redux')
     expect(div.children('button')).to.have.length(1)

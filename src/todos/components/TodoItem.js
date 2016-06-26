@@ -14,7 +14,7 @@ class TodoItem extends Component {
     return (
       <li className={ classnames ({ completed: todo.completed })}>
         <div className="view">
-          <input className="toggle" type="checkbox" />
+          <input className="toggle" type="checkbox" checked={ todo.completed } />
           <label>
             { todo.text }
           </label>
