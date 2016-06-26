@@ -14,6 +14,7 @@ function setup () {
       completed: false,
     },
     completeTodo: sinon.spy (),
+    deleteTodo: sinon.spy (),
   }
   const component = shallow (
     <TodoItem {...props} />
@@ -38,10 +39,17 @@ describe ('TodoItem component', () => {
     expect(div.children('button')).to.have.length(1)
   })
 
-  it ('should call completeTodo() when onChange is fired', () => {
+  it ('should call completeTodo() when input onChange is fired', () => {
     const { component, props } = setup()
     const input = component.find ('input')
     input.simulate ('change')
     expect(props.completeTodo.called).to.be.true
+  })
+
+  it ('should call deleteTodo() when button onClick is fired', () => {
+    const { component, props } = setup()
+    const button = component.find ('button')
+    button.simulate ('click')
+    expect(props.deleteTodo.called).to.be.true
   })
 })

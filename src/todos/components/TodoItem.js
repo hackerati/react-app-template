@@ -9,7 +9,7 @@ class TodoItem extends Component {
   }
 
   render() {
-    const { todo, completeTodo } = this.props
+    const { todo, completeTodo, deleteTodo } = this.props
 
     return (
       <li className={ classnames ({ completed: todo.completed })}>
@@ -19,7 +19,7 @@ class TodoItem extends Component {
           <label>
             { todo.text }
           </label>
-          <button className="destroy" />
+          <button className="destroy" onClick={ () => deleteTodo (todo.id) } />
         </div>
       </li>
     )
@@ -29,6 +29,7 @@ class TodoItem extends Component {
 TodoItem.propTypes = {
   todo: PropTypes.object.isRequired,
   completeTodo: PropTypes.func.isRequired,
+  deleteTodo: PropTypes.func.isRequired,
 }
 
 export default TodoItem
