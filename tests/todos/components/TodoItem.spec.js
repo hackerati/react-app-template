@@ -77,4 +77,13 @@ describe ('TodoItem component', () => {
     component.find('TodoTextInput').props().onSave('')
     expect(props.deleteTodo.called).to.be.true
   })
+
+  it ('should leave edit mode after TodoTextInput onSave', () => {
+    const { component, props } = setup()
+    component.find('label').simulate ('doubleclick') // switch to edit mode
+    component.find('TodoTextInput').props().onSave('Use Redux') // update
+    component.update() // force component to re-render
+    expect(component.hasClass('editing')).to.be.false // no longer editing
+    expect(component.children('div')).to.have.length(1) // switched back to div
+  })
 })
