@@ -70,4 +70,11 @@ describe ('TodoItem component', () => {
     component.find('TodoTextInput').props().onSave('Use Redux')
     expect(props.editTodo.called).to.be.true
   })
+  
+  it ('should call deleteTodo() when TodoTextInput onSave is called empty', () => {
+    const { component, props } = setup()
+    component.find('label').simulate ('doubleclick') // switch to edit mode
+    component.find('TodoTextInput').props().onSave('')
+    expect(props.deleteTodo.called).to.be.true
+  })
 })
