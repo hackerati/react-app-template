@@ -15,6 +15,7 @@ function setup () {
     },
     completeTodo: sinon.spy (),
     deleteTodo: sinon.spy (),
+    editTodo: sinon.spy (),
   }
   const component = shallow (
     <TodoItem {...props} />
@@ -61,5 +62,12 @@ describe ('TodoItem component', () => {
     const input = component.find ('TodoTextInput')
     expect(input).to.have.length(1)
     expect(input.prop('text')).to.equal('Use Redux')
+  })
+
+  it('should call editTodo() when TodoTextInput onSave is called', () => {
+    const { component, props } = setup()
+    component.find('label').simulate ('doubleclick') // switch to edit mode
+    component.find('TodoTextInput').props().onSave('Use Redux')
+    expect(props.editTodo.called).to.be.true
   })
 })

@@ -16,6 +16,11 @@ class TodoItem extends Component {
     this.setState({ editing: true })
   }
 
+  handleSave (id, text) {
+    this.props.editTodo (id, text)
+    this.setState ({ editing: false })
+  }
+
   render() {
     const { todo, completeTodo, deleteTodo } = this.props
 
@@ -23,7 +28,8 @@ class TodoItem extends Component {
       return (
         <li className = { classnames ({ completed: todo.completed,
                                       editing: this.state.editing })}>
-          <TodoTextInput text = { todo.text } editing = { this.state.editing } />
+          <TodoTextInput text = { todo.text } editing = { this.state.editing }
+                         onSave={ (text) => this.handleSave (todo.id, text) } />
         </li>
       )
     } else {
@@ -48,6 +54,7 @@ TodoItem.propTypes = {
   todo: PropTypes.object.isRequired,
   completeTodo: PropTypes.func.isRequired,
   deleteTodo: PropTypes.func.isRequired,
+  editTodo: PropTypes.func.isRequired,
 }
 
 export default TodoItem
