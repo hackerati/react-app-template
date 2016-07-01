@@ -13,7 +13,14 @@ describe ('Todo actions', () => {
         expect (todos.actions.add('My todo')).to.deep.equal(expectedAction)
     })
 
-    it ('should create an action to edit a task')
+    it ('should create an action to edit a task', () => {
+        const expectedAction = {
+          type: todos.types.EDIT,
+          id: 'my_id',
+          description: 'New todo',
+        }
+        expect(todos.actions.edit('my_id', 'New todo')).to.deep.equal(expectedAction)
+    })
 
     it ('should create an action to delete a task')
 
