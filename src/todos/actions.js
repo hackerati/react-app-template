@@ -7,6 +7,9 @@ export function add (text) {
 }
 
 export function edit (id, text) {
-    console.log (id + ' ' + text)
     return { type: types.EDIT, id: id, description: text }
+}
+
+export function del (id) { // 'delete' is a keyword so can't use it for the function name :-(
+    return { type: types.DELETE, id: id }
 }
