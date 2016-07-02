@@ -1,6 +1,8 @@
 'use strict'
 
 import React from 'react'
+import { Map } from 'immutable'
+import uuid from 'uuid'
 import { expect } from 'chai'
 import { shallow } from 'enzyme'
 import sinon from 'sinon'
@@ -8,14 +10,14 @@ import TodoItem from '../../../src/todos/components/TodoItem'
 
 function setup () {
   const props = {
-    todo: {
-      id: 0,
-      text: 'Use Redux',
+    todo: Map ({
+      id: uuid.v4(),
+      description: 'Use Redux',
       completed: false,
-    },
-    completeTodo: sinon.spy (),
-    deleteTodo: sinon.spy (),
-    editTodo: sinon.spy (),
+    }),
+    complete: sinon.spy (),
+    del: sinon.spy (),
+    edit: sinon.spy (),
   }
   const component = shallow (
     <TodoItem {...props} />
@@ -40,18 +42,18 @@ describe ('TodoItem component', () => {
     expect(div.children('button')).to.have.length(1)
   })
 
-  it ('should call completeTodo() when input onChange is fired', () => {
+  it ('should call complete() when input onChange is fired', () => {
     const { component, props } = setup()
     const input = component.find ('input')
     input.simulate ('change')
-    expect(props.completeTodo.called).to.be.true
+    expect(props.complete.called).to.be.true
   })
 
-  it ('should call deleteTodo() when button onClick is fired', () => {
+  it ('should call del() when button onClick is fired', () => {
     const { component, props } = setup()
     const button = component.find ('button')
     button.simulate ('click')
-    expect(props.deleteTodo.called).to.be.true
+    expect(props.del.called).to.be.true
   })
 
   it ('should switch to edit mode when label onDoubleClick is fired', () => {
@@ -64,18 +66,18 @@ describe ('TodoItem component', () => {
     expect(input.prop('text')).to.equal('Use Redux')
   })
 
-  it('should call editTodo() when TodoTextInput onSave is called', () => {
+  it('should call edit() when TodoTextInput onSave is called', () => {
     const { component, props } = setup()
     component.find('label').simulate ('doubleclick') // switch to edit mode
     component.find('TodoTextInput').props().onSave('Use Redux')
-    expect(props.editTodo.called).to.be.true
+    expect(props.edit.called).to.be.true
   })
   
-  it ('should call deleteTodo() when TodoTextInput onSave is called empty', () => {
+  it ('should call del() when TodoTextInput onSave is called empty', () => {
     const { component, props } = setup()
     component.find('label').simulate ('doubleclick') // switch to edit mode
     component.find('TodoTextInput').props().onSave('')
-    expect(props.deleteTodo.called).to.be.true
+    expect(props.del.called).to.be.true
   })
 
   it ('should leave edit mode after TodoTextInput onSave', () => {

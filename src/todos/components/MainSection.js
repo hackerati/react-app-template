@@ -1,7 +1,6 @@
 'use strict'
 
 import React, { PropTypes, Component } from 'react'
-import _ from 'lodash'
 import TodoItem from './TodoItem'
 
 class MainSection extends Component {
@@ -10,18 +9,23 @@ class MainSection extends Component {
   }
 
   render () {
-    const { todos } = this.props
+    const { todos, actions } = this.props
 
     return (
       <section className="main">
         <ul className="todo-list">
-          { _.map (todos, todo => 
-              <TodoItem key={todo.id} todo={todo} />
+          { todos.map ( todo =>
+              <TodoItem key={todo.get('id')} todo={todo} {...actions} />
           )}
         </ul>
       </section>
     )
   }
+}
+
+MainSection.propTypes = {
+  todos: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired
 }
 
 export default MainSection

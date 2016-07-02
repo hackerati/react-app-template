@@ -18,35 +18,35 @@ class TodoItem extends Component {
 
   handleSave (id, text) {
     if (text.length === 0) {
-      this.props.deleteTodo (id)
+      this.props.del (id)
     } else {
-      this.props.editTodo (id, text)
+      this.props.edit (id, text)
     }
     this.setState({ editing: false })
   }
 
   render() {
-    const { todo, completeTodo, deleteTodo } = this.props
+    const { todo, complete, del } = this.props
 
     if (this.state.editing) {
       return (
-        <li className = { classnames ({ completed: todo.completed,
+        <li className = { classnames ({ completed: todo.get('completed'),
                                       editing: this.state.editing })}>
-          <TodoTextInput text = { todo.text } editing = { this.state.editing }
-                         onSave={ (text) => this.handleSave (todo.id, text) } />
+          <TodoTextInput text = { todo.get('description') } editing = { this.state.editing }
+                         onSave={ (text) => this.handleSave (todo.get('id'), text) } />
         </li>
       )
     } else {
       return (
-        <li className={ classnames ({ completed: todo.completed,
+        <li className={ classnames ({ completed: todo.get('completed'),
                                       editing: this.state.editing })}>
           <div className="view">
-            <input className="toggle" type="checkbox" checked={ todo.completed }
-                   onChange={ () => completeTodo (todo.id) }  />
-            <label onDoubleClick= { () => this.handleDoubleClick () }>
-              { todo.text }
+            <input className="toggle" type="checkbox" checked={ todo.get('completed') }
+                   onChange={ () => complete (todo.get('id')) }  />
+            <label onDoubleClick= { this.handleDoubleClick.bind (this) }>
+              { todo.get('description') }
             </label>
-            <button className="destroy" onClick={ () => deleteTodo (todo.id) } />
+            <button className="destroy" onClick={ () => del (todo.get('id')) } />
           </div>
         </li>
       )
@@ -56,9 +56,9 @@ class TodoItem extends Component {
 
 TodoItem.propTypes = {
   todo: PropTypes.object.isRequired,
-  completeTodo: PropTypes.func.isRequired,
-  deleteTodo: PropTypes.func.isRequired,
-  editTodo: PropTypes.func.isRequired,
+  complete: PropTypes.func.isRequired,
+  del: PropTypes.func.isRequired,
+  edit: PropTypes.func.isRequired,
 }
 
 export default TodoItem
