@@ -13,16 +13,8 @@ import TodoTextInput from '../../../src/todos/components/TodoTextInput'
 function setup () {
   const props = {
     todos: List ([
-      Map ({
-        id: uuid.v4(),
-        description: 'Use Redux',
-        completed: false,
-      }),
-      Map ({
-        id: uuid.v4(),
-        description: 'Run the tests',
-        completed: false,
-      })
+      Map ({ id: uuid.v4(), description: 'Use Redux', completed: false, }),
+      Map ({ id: uuid.v4(), description: 'Run the tests', completed: false, })
     ]),
     actions: {
       edit: sinon.spy (),

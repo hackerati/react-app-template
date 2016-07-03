@@ -10,11 +10,7 @@ import TodoItem from '../../../src/todos/components/TodoItem'
 
 function setup () {
   const props = {
-    todo: Map ({
-      id: uuid.v4(),
-      description: 'Use Redux',
-      completed: false,
-    }),
+    todo: Map ({ id: uuid.v4(), description: 'Use Redux', completed: false, }),
     complete: sinon.spy (),
     del: sinon.spy (),
     edit: sinon.spy (),
