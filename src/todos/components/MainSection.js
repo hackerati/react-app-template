@@ -2,6 +2,7 @@
 
 import React, { PropTypes, Component } from 'react'
 import TodoItem from './TodoItem'
+import Footer from './Footer'
 
 class MainSection extends Component {
   constructor (props, context) {
@@ -20,6 +21,18 @@ class MainSection extends Component {
     }
   }
 
+  renderFooter (completedCount) {
+    const { todos } = this.props
+    const activeCount = todos.size - completedCount
+
+    if (todos.size) {
+      return (
+        <Footer completedCount={completedCount}
+                activeCount={activeCount} />
+      )
+    }
+  }
+
   render () {
     const { todos, actions } = this.props
 
@@ -33,6 +46,7 @@ class MainSection extends Component {
               <TodoItem key={todo.get('id')} todo={todo} {...actions} />
           )}
         </ul>
+        { this.renderFooter (completedCount) }
       </section>
     )
   }

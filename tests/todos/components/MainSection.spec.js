@@ -4,11 +4,12 @@ import React from 'react'
 import { List, Map } from 'immutable'
 import uuid from 'uuid'
 import { expect } from 'chai'
-import { mount, shallow } from 'enzyme'
+import { mount } from 'enzyme'
 import sinon from 'sinon'
 import MainSection from '../../../src/todos/components/MainSection'
 import TodoItem from '../../../src/todos/components/TodoItem'
 import TodoTextInput from '../../../src/todos/components/TodoTextInput'
+import Footer from '../../../src/todos/components/Footer'
 
 function setup (propOverrides) {
   const props = Object.assign({
@@ -71,7 +72,11 @@ describe ('MainSection component', () => {
       })
     })
 
-    it ('should include a Footer component with buttons to filter the task list')
+    it ('should include a Footer component', () => {
+      const { component } = setup ()
+      const footer = component.children(Footer)
+      expect(footer.type()).to.equal(Footer)
+    })
   })
 
   describe ('Behavior', () => {
