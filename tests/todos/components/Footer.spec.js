@@ -3,12 +3,16 @@
 import React from 'react'
 import { expect } from 'chai'
 import { shallow } from 'enzyme'
+import sinon from 'sinon'
 import Footer from '../../../src/todos/components/Footer'
+import * as todoFilters from '../../../src/todos/TodoFilters'
 
 function setup (propOverrides) {
   const props = Object.assign({
     completedCount: 0,
     activeCount: 0,
+    filter: todoFilters.SHOW_ALL,
+    onShow: sinon.spy ()
   }, propOverrides)
 
   const component = shallow (
@@ -22,23 +26,47 @@ function setup (propOverrides) {
 }
 
 describe ('Footer component', () => {
-  it ('should render correctly', () => {
-    const { component } = setup ()
-    expect(component.type()).to.equal('footer')
+  describe ('Display', () => {
+    it ('should be a footer', () => {
+      const { component } = setup ()
+      expect(component.type()).to.equal('footer')
+    })
 
-    const span = component.children('span')
-    expect(span.prop('className')).to.equal('todo-count')
+    it ('should have a todo counter', () => {
+      const { component } = setup ()
+      const span = component.children('span')
+      expect(span.prop('className')).to.equal('todo-count')
+    })
+
+    it ('should have a list of filters', () => {
+      const { component } = setup ()
+      const ul = component.children('ul')
+      expect(ul.prop('className')).to.equal('filters')
+      const filters = ul.children('li')
+      expect(filters.at(0).text()).to.equal('All')
+      expect(filters.at(1).text()).to.equal('Active')
+      expect(filters.at(2).text()).to.equal('Completed')
+    })
   })
 
-  it ('should display \'No items left\' when active count is 0', () => {
-    const { component } = setup ({ activeCount: 0 })
-    const span = component.children('span')
-    expect(span.text()).to.equal('No items left')
-  })
+  describe ('Behavior', () => {
+    it ('should display \'No items left\' when active count is 0', () => {
+      const { component } = setup ({ activeCount: 0 })
+      const span = component.children('span')
+      expect(span.text()).to.equal('No items left')
+    })
 
-  it ('should display \'1 item left\' when active count is 1', () => {
-    const { component } = setup ({ activeCount: 1 })
-    const span = component.children('span')
-    expect(span.text()).to.equal('1 item left')
+    it ('should display \'1 item left\' when active count is 1', () => {
+      const { component } = setup ({ activeCount: 1 })
+      const span = component.children('span')
+      expect(span.text()).to.equal('1 item left')
+    })
+
+    it ('should call onShow() when a filter is clicked', () => {
+      const { component, props } = setup ()
+      component.children('ul').children('li').at(1).children('a').simulate('click')
+      expect(props.onShow.called).to.be.true
+      expect(props.onShow.args[0][0]).to.equal(todoFilters.SHOW_ACTIVE)
+    })
   })
 })
