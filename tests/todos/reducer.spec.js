@@ -90,4 +90,25 @@ describe ('Todos reducer', () => {
                                                        id: state.get(1).get('id') })
         expect (new_state1.get(1).get('completed')).to.equal(state.get(1).get('completed'))
     })
+
+    it ('should handle COMPLETE_ALL task', () => {
+        const state = List ([
+          Map ({
+            id: uuid.v4(),
+	    description: 'My task',
+	    completed: true
+          }),
+          Map ({
+            id: uuid.v4(),
+	    description: 'My next task',
+	    completed: false
+          })
+        ])
+        const new_state = todos.reducer (state, { type: todos.types.COMPLETE_ALL }) // all completed
+        expect (new_state.get(0).get('completed')).to.equal(true)
+        expect (new_state.get(1).get('completed')).to.equal(true)
+        const new_state1 = todos.reducer (new_state, { type: todos.types.COMPLETE_ALL }) // none
+        expect (new_state1.get(0).get('completed')).to.equal(false)
+        expect (new_state1.get(1).get('completed')).to.equal(false)
+    })
 })

@@ -17,3 +17,7 @@ export function del (id) { // 'delete' is a keyword so can't use it for the func
 export function complete (id) {
     return { type: types.COMPLETE, id: id }
 }
+
+export function completeAll () {
+    return { type: types.COMPLETE_ALL }
+}

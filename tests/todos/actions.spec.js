@@ -38,5 +38,10 @@ describe ('Todo actions', () => {
         expect(todos.actions.complete('my_id')).to.deep.equal(expectedAction)
     })
 
-    it ('should create an action to toggle a filter between completed and not completed')
+    it ('should create an action to toggle all tasks between completed and not completed', () => {
+        const expectedAction = {
+          type: todos.types.COMPLETE_ALL,
+        }
+        expect(todos.actions.completeAll()).to.deep.equal(expectedAction)
+    })
 })
