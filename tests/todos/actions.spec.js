@@ -44,4 +44,11 @@ describe ('Todo actions', () => {
         }
         expect(todos.actions.completeAll()).to.deep.equal(expectedAction)
     })
+
+    it ('should create an action to delete all completed tasks', () => {
+        const expectedAction = {
+          type: todos.types.CLEAR_COMPLETED,
+        }
+        expect(todos.actions.clearCompleted()).to.deep.equal(expectedAction)
+    })
 })

@@ -22,6 +22,7 @@ function setup (propOverrides) {
       del: sinon.spy (),
       complete: sinon.spy (),
       completeAll: sinon.spy (),
+      clearCompleted: sinon.spy (),
     }
   }, propOverrides)
 
@@ -49,17 +50,6 @@ describe ('MainSection component', () => {
       expect(input.prop('checked')).to.be.false
     })
 
-    it ('should be checked when all todos are completed', () => {
-      const completed = {
-        todos: List ([
-          Map ({ id: uuid.v4(), description: 'Use Redux', completed: true, }),
-        ]),
-      }
-      const { component } = setup (completed)
-      const input = component.children('input')
-      expect(input.prop('checked')).to.be.true
-    })
-
     it ('should include a list of tasks', () => {
       const { component, props } = setup ()
       const ul = component.children('ul')
@@ -80,6 +70,17 @@ describe ('MainSection component', () => {
   })
 
   describe ('Behavior', () => {
+    it ('should be checked when all todos are completed', () => {
+      const completed = {
+        todos: List ([
+          Map ({ id: uuid.v4(), description: 'Use Redux', completed: true, }),
+        ]),
+      }
+      const { component } = setup (completed)
+      const input = component.children('input')
+      expect(input.prop('checked')).to.be.true
+    })
+
     it ('should call edit() when saving a string in edit mode', () => {
       const { component, props } = setup ()
       const item = component.children('ul').children(0) // get the first item
@@ -114,6 +115,18 @@ describe ('MainSection component', () => {
       const { component, props } = setup ()
       component.children('input').simulate ('change') 
       expect(props.actions.completeAll.called).to.be.true
+    })
+
+    it ('should call clearCompleted() when the clear completed button is clicked', () => {
+      const completed = {
+        todos: List ([
+          Map ({ id: uuid.v4(), description: 'Use Redux', completed: true, }),
+        ]),
+      }
+      const { component, props } = setup (completed)
+      const footer = component.children(Footer)
+      footer.find('button').simulate ('click')
+      expect(props.actions.clearCompleted.called).to.be.true
     })
   })
 })

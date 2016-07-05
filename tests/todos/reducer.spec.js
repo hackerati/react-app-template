@@ -27,16 +27,8 @@ describe ('Todos reducer', () => {
 
     it ('should handle EDIT task', () => {
         const state = List ([
-          Map ({
-            id: uuid.v4(),
-	    description: 'My task',
-	    completed: false
-          }),
-          Map ({
-            id: uuid.v4(),
-	    description: 'My next task',
-	    completed: false
-          })
+          Map ({ id: uuid.v4(), description: 'My task', completed: false }),
+          Map ({ id: uuid.v4(), description: 'My next task', completed: false })
         ])
         const new_state = todos.reducer (state, { type: todos.types.EDIT,
                                                   id: state.get(1).get('id'),
@@ -50,16 +42,8 @@ describe ('Todos reducer', () => {
 
     it ('should handle DELETE task', () => {
         const state = List ([
-          Map ({
-            id: uuid.v4(),
-	    description: 'My task',
-	    completed: false
-          }),
-          Map ({
-            id: uuid.v4(),
-	    description: 'My next task',
-	    completed: false
-          })
+          Map ({ id: uuid.v4(), description: 'My task', completed: false }),
+          Map ({ id: uuid.v4(), description: 'My next task', completed: false })
         ])
         const new_state = todos.reducer (state, { type: todos.types.DELETE, id: state.get(1).get('id')})
         expect (new_state.size).to.equal(1)
@@ -68,16 +52,8 @@ describe ('Todos reducer', () => {
 
     it ('should handle COMPLETE task', () => {
         const state = List ([
-          Map ({
-            id: uuid.v4(),
-	    description: 'My task',
-	    completed: false
-          }),
-          Map ({
-            id: uuid.v4(),
-	    description: 'My next task',
-	    completed: false
-          })
+          Map ({ id: uuid.v4(), description: 'My task', completed: false }),
+          Map ({ id: uuid.v4(), description: 'My next task', completed: false })
         ])
         const new_state = todos.reducer (state, { type: todos.types.COMPLETE,
                                                   id: state.get(1).get('id') })
@@ -93,16 +69,8 @@ describe ('Todos reducer', () => {
 
     it ('should handle COMPLETE_ALL task', () => {
         const state = List ([
-          Map ({
-            id: uuid.v4(),
-	    description: 'My task',
-	    completed: true
-          }),
-          Map ({
-            id: uuid.v4(),
-	    description: 'My next task',
-	    completed: false
-          })
+          Map ({ id: uuid.v4(), description: 'My task', completed: true }),
+          Map ({ id: uuid.v4(), description: 'My next task', completed: false })
         ])
         const new_state = todos.reducer (state, { type: todos.types.COMPLETE_ALL }) // all completed
         expect (new_state.get(0).get('completed')).to.equal(true)
@@ -110,5 +78,15 @@ describe ('Todos reducer', () => {
         const new_state1 = todos.reducer (new_state, { type: todos.types.COMPLETE_ALL }) // none
         expect (new_state1.get(0).get('completed')).to.equal(false)
         expect (new_state1.get(1).get('completed')).to.equal(false)
+    })
+
+    it ('should handle CLEAR_COMPLETED task', () => {
+        const state = List ([
+          Map ({ id: uuid.v4(), description: 'My task', completed: false }),
+          Map ({ id: uuid.v4(), description: 'My next task', completed: true })
+        ])
+        const new_state = todos.reducer (state, { type: todos.types.CLEAR_COMPLETED })
+        expect (new_state.size).to.equal(1)
+        expect (new_state.get(0)).to.equal(state.get(0))
     })
 })

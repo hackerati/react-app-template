@@ -39,6 +39,18 @@ class Footer extends Component {
     ) 
   }
 
+  renderClearButton () {
+    const { completedCount, onClearCompleted } = this.props
+    if (completedCount > 0) {
+      return (
+        <button className="clear-completed"
+                onClick={onClearCompleted} >
+          Clear completed
+        </button>
+      )
+    }
+  }
+
   render () {
     const { todos, actions } = this.props
 
@@ -46,6 +58,7 @@ class Footer extends Component {
       <footer className="footer">
         { this.renderTodoCount () }
         { this.renderFilters () }
+        { this.renderClearButton () }
       </footer>
     )
   }
@@ -56,6 +69,7 @@ Footer.propTypes = {
   activeCount: PropTypes.number.isRequired,
   filter: PropTypes.string.isRequired,
   onShow: PropTypes.func.isRequired,
+  onClearCompleted: PropTypes.func.isRequired,
 }
 
 export default Footer

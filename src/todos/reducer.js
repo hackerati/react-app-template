@@ -23,6 +23,8 @@ export default function reducer (state = List ([]), action) {
     case types.COMPLETE_ALL:
         const areAllMarked = state.every ( todo => todo.get('completed') )
         return (state.map (todo => todo.set ('completed', !areAllMarked)))
+    case types.CLEAR_COMPLETED:
+        return (state.filter ( todo => todo.get('completed') === false ))
     default:
         // just return the same state
         return (state)

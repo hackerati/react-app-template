@@ -12,7 +12,8 @@ function setup (propOverrides) {
     completedCount: 0,
     activeCount: 0,
     filter: todoFilters.SHOW_ALL,
-    onShow: sinon.spy ()
+    onShow: sinon.spy (),
+    onClearCompleted: sinon.spy (),
   }, propOverrides)
 
   const component = shallow (
@@ -67,6 +68,24 @@ describe ('Footer component', () => {
       component.children('ul').children('li').at(1).children('a').simulate('click')
       expect(props.onShow.called).to.be.true
       expect(props.onShow.args[0][0]).to.equal(todoFilters.SHOW_ACTIVE)
+    })
+
+    it ('should not have a Clear Completed button when there are no completed todos', () => {
+      const { component } = setup ({ completedCount: 0 })
+      const button = component.children('button')
+      expect(button.length).to.equal(0)
+    })
+
+    it ('should have a Clear Completed button when there are completed todos', () => {
+      const { component } = setup ({ completedCount: 1 })
+      const button = component.children('button')
+      expect(button.prop('className')).to.equal('clear-completed')
+    })
+
+    it('should call onClearCompleted() when the clear completed button is clicked', () => {
+      const { component, props } = setup ({ completedCount: 1 })
+      component.children('button').simulate('click')
+      expect(props.onClearCompleted.called).to.be.true
     })
   })
 })

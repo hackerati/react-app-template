@@ -12,8 +12,11 @@ class MainSection extends Component {
   }
 
   handleShow (filter) {
-    console.log (filter)
     this.setState ({ filter: filter })
+  }
+
+  handleClearCompleted() {
+    this.props.actions.clearCompleted()
   }
 
   renderToggleAll (completedCount) {
@@ -38,7 +41,8 @@ class MainSection extends Component {
         <Footer completedCount={completedCount}
                 activeCount={activeCount}
                 filter={filter}
-                onShow={this.handleShow.bind(this)} />
+                onShow={this.handleShow.bind(this)}
+                onClearCompleted={this.handleClearCompleted.bind(this)} />
       )
     }
   }
