@@ -1,10 +1,12 @@
 'use strict'
 
 import React, { PropTypes, Component } from 'react'
+import Radium from 'radium'
 import TodoItem from './TodoItem'
 import Footer from './Footer'
 import * as todoFilters from '../TodoFilters'
 
+@Radium
 class MainSection extends Component {
   constructor (props, context) {
     super (props, context)
@@ -23,10 +25,12 @@ class MainSection extends Component {
     const { todos, actions } = this.props
     if (todos.size > 0) {
       return (
-        <input className="toggle-all"
-               type="checkbox"
-               checked={completedCount === todos.size}
-               onChange={actions.completeAll} />
+        <div style={styles.toggleAll}>
+          <div style={(completedCount === todos.size ? styles.toggleAllChecked : styles.toggleAllUnchecked)}
+               onClick={actions.completeAll}>
+            ❯
+          </div>
+        </div>
       )
     }
   }
@@ -60,9 +64,9 @@ class MainSection extends Component {
     const completedCount = todos.filter ( todo => todo.get('completed') ).size
 
     return (
-      <section className="main">
+      <section style={styles.mainSection}>
         { this.renderToggleAll (completedCount) }
-        <ul className="todo-list">
+        <ul style={styles.todoList}>
           { filteredTodos.map ( todo =>
               <TodoItem key={todo.get('id')} todo={todo} {...actions} />
           )}
@@ -76,6 +80,41 @@ class MainSection extends Component {
 MainSection.propTypes = {
   todos: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired
+}
+
+const styles = {
+  mainSection: {
+    position: 'relative',
+    zIndex: 2,
+    borderTop: '1px solid #e6e6e6',
+  },
+  todoList: {
+    margin: 0,
+    padding: 0,
+    listStyle: 'none'
+  },
+  toggleAll: {
+    position: 'absolute',
+    top: -55,
+    left: -5,
+    width: 60,
+    height: 34,
+    textAlign: 'center',
+    border: 'none',
+    cursor: 'pointer',
+  },
+  toggleAllUnchecked: {
+    fontSize: 22,
+    color: '#e6e6e6',
+    padding: '10px 27px 10px 27px',
+    transform: 'rotate(90deg)',
+  },
+  toggleAllChecked: {
+    fontSize: 22,
+    color: '#737373',
+    padding: '10px 27px 10px 27px',
+    transform: 'rotate(90deg)',
+  },
 }
 
 export default MainSection
