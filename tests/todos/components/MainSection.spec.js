@@ -37,7 +37,7 @@ function setup (propOverrides) {
 }
 
 describe ('MainSection component', () => {
-  describe ('Display', () => {
+  describe ('Should render correctly', () => {
     it ('should be a MainSection component', () => {
       const { component } = setup ()
       expect(component.type()).to.equal(MainSection)
@@ -45,9 +45,8 @@ describe ('MainSection component', () => {
 
     it ('should include a checkbox to toggle task completion', () => {
       const { component } = setup ()
-      const input = component.children('input')
-      expect(input.prop('type')).to.equal('checkbox')
-      expect(input.prop('checked')).to.be.false
+      const toggle = component.children('div').at(0)
+      expect(toggle.text()).to.equal('❯')
     })
 
     it ('should include a list of tasks', () => {
@@ -69,18 +68,7 @@ describe ('MainSection component', () => {
     })
   })
 
-  describe ('Behavior', () => {
-    it ('should be checked when all todos are completed', () => {
-      const completed = {
-        todos: List ([
-          Map ({ id: uuid.v4(), description: 'Use Redux', completed: true, }),
-        ]),
-      }
-      const { component } = setup (completed)
-      const input = component.children('input')
-      expect(input.prop('checked')).to.be.true
-    })
-
+  describe ('Should behave correctly', () => {
     it ('should call edit() when saving a string in edit mode', () => {
       const { component, props } = setup ()
       const item = component.children('ul').children(0) // get the first item
@@ -97,23 +85,19 @@ describe ('MainSection component', () => {
       expect(props.actions.del.called).to.be.true
     })
 
-    it ('should call delete() when the delete button is clicked', () => {
-      const { component, props } = setup ()
-      const item = component.children('ul').children(0) // get the first item
-      item.find('button').at(0).simulate ('click') // click its button 
-      expect(props.actions.del.called).to.be.true
-    })
+    it ('should call delete() when the delete button is clicked')
+    // how to trigger TodoItem li hover state to show the delete button?
 
-    it ('should call complete() when the complete checkbox is clicked', () => {
+    it ('should call complete() when the complete button is clicked', () => {
       const { component, props } = setup ()
       const item = component.children('ul').children(0) // get the first item
-      item.find('input').at(0).simulate ('change') // change its input checkbox 
+      item.find('svg').at(0).simulate ('click') // change its input checkbox 
       expect(props.actions.complete.called).to.be.true
     })
 
-    it ('should call completeAll() when the toggle checkbox is changed', () => {
+    it ('should call completeAll() when the toggle button is clicked', () => {
       const { component, props } = setup ()
-      component.children('input').simulate ('change') 
+      component.children('div').children('div').simulate ('click') 
       expect(props.actions.completeAll.called).to.be.true
     })
 

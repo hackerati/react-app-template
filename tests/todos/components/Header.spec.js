@@ -23,23 +23,29 @@ function setup () {
 }
 
 describe ('Header component', () => {
-    it ('should render correctly', () => {
+  describe ('Should render correctly', () => {
+    it ('should be a Header', () => {
         const { component } = setup ()
-
         expect(component.type()).to.equal('header')
-        expect(component.props().className).to.equal('header')
-
-        const h1 = component.children('h1')
-        const input = component.children(TodoTextInput)
-
-        expect(h1.type()).to.equal('h1')
-        expect(h1.text()).to.equal('todos')
-
-        expect(input.type()).to.equal(TodoTextInput)
-        expect(input.props().newTodo).to.equal(true)
-        expect(input.props().placeholder).to.equal('What needs to be done?')
     })
 
+    it ('should have a title', () => {
+        const { component } = setup ()
+        const h1 = component.children('h1')
+        expect(h1.type()).to.equal('h1')
+        expect(h1.text()).to.equal('todos')
+    })
+
+    it ('should have a TodoTextInput field', () => {
+        const { component } = setup ()
+        const input = component.children(TodoTextInput)
+        expect(input.type()).to.equal(TodoTextInput)
+        expect(input.props().placeholder).to.equal('What needs to be done?')
+        expect(input.props().isNew).to.equal(true)
+    })
+  })
+
+  describe ('Should behave correctly', () => {
     it ('should call addTodo if length of text is greater than 0', () => {
         const { component, props } = setup ()
         const input = component.children(TodoTextInput)
@@ -48,4 +54,5 @@ describe ('Header component', () => {
         input.props().onSave ('Use Redux')
         expect(props.addTodo.called).to.be.true
     })
+  })
 })

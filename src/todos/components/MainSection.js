@@ -26,8 +26,9 @@ class MainSection extends Component {
     if (todos.size > 0) {
       return (
         <div style={styles.toggleAll}>
-          <div style={(completedCount === todos.size ? styles.toggleAllChecked : styles.toggleAllUnchecked)}
-               onClick={actions.completeAll}>
+          <div onClick={actions.completeAll}
+               style={(completedCount === todos.size ? styles.toggleAllChecked :
+                                                       styles.toggleAllUnchecked)}>
             ❯
           </div>
         </div>

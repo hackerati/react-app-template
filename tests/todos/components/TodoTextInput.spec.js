@@ -11,8 +11,8 @@ function setup (propOverrides) {
     onSave: sinon.spy (),
     text: 'my task',
     placeholder: 'do it',
-    editing: false,
-    newTodo: false
+    isNew: false,
+    style: {},
   }, propOverrides)
 
   const component = shallow (
@@ -26,24 +26,16 @@ function setup (propOverrides) {
 }
 
 describe ('TodoTextInput component', () => {
-    it ('should render correctly', () => {
+  describe ('Should render correctly', () => {
+    it ('should be a TodoTextInput component', () => {
       const { component } = setup ()
       expect(component.find('input')).to.have.length(1)
       expect(component.find('input').at(0).prop('placeholder')).to.equal('do it')
       expect(component.find('input').at(0).prop('value')).to.equal('my task')
-      expect(component.find('input').at(0).prop('className')).to.equal('')
     })
+  })
 
-    it ('should render correctly when editing=true', () => {
-      const { component } = setup ({ editing: true })
-      expect(component.find('input').at(0).prop('className')).to.equal('edit')
-    })
-
-    it('should render correctly when newTodo is true', () => {
-      const { component } = setup ({ newTodo: true })
-      expect(component.find('input').at(0).prop('className')).to.equal('newTodo')
-    })
-
+  describe ('Should behave correctly', () => {
     it ('should update value on change', () => {
       const { props, component } = setup ()
       component.find('input').at(0).simulate ('change', { target: { value: 'task' }})
@@ -61,7 +53,7 @@ describe ('TodoTextInput component', () => {
     })
 
     it('should reset state on return key press if newTodo', () => {
-      const { props, component } = setup ({ newTodo: true })
+      const { props, component } = setup ({ isNew: true })
       component.find('input').at(0).simulate ('keydown', { which: 13, // RETURN KEY
                                                            target: {
                                                              value: 'new task'
@@ -77,8 +69,9 @@ describe ('TodoTextInput component', () => {
     })
 
     it ('shouldnt call onSave on blur if newTodo', () => {
-      const { props, component } = setup ({ newTodo: true })
+      const { props, component } = setup ({ isNew: true })
       component.find('input').at(0).simulate ('blur', { target: { value: 'new task' }})
       expect(props.onSave.called).to.be.false
     })
+  })
 })

@@ -27,21 +27,22 @@ function setup (propOverrides) {
 }
 
 describe ('Footer component', () => {
-  describe ('Display', () => {
+  describe ('Should render correctly', () => {
     it ('should be a footer', () => {
       const { component } = setup ()
-      expect(component.type()).to.equal('footer')
+      const footer = component.find('footer')
+      expect(footer.type()).to.equal('footer')
     })
 
     it ('should have a todo counter', () => {
       const { component } = setup ()
-      const span = component.children('span')
+      const span = component.find('footer').children('span')
       expect(span.prop('className')).to.equal('todo-count')
     })
 
     it ('should have a list of filters', () => {
       const { component } = setup ()
-      const ul = component.children('ul')
+      const ul = component.find('footer').children('ul')
       expect(ul.prop('className')).to.equal('filters')
       const filters = ul.children('li')
       expect(filters.at(0).text()).to.equal('All')
@@ -50,41 +51,41 @@ describe ('Footer component', () => {
     })
   })
 
-  describe ('Behavior', () => {
+  describe ('Should behave correctly', () => {
     it ('should display \'No items left\' when active count is 0', () => {
       const { component } = setup ({ activeCount: 0 })
-      const span = component.children('span')
+      const span = component.find('footer').children('span')
       expect(span.text()).to.equal('No items left')
     })
 
     it ('should display \'1 item left\' when active count is 1', () => {
       const { component } = setup ({ activeCount: 1 })
-      const span = component.children('span')
+      const span = component.find('footer').children('span')
       expect(span.text()).to.equal('1 item left')
     })
 
     it ('should call onShow() when a filter is clicked', () => {
       const { component, props } = setup ()
-      component.children('ul').children('li').at(1).children('a').simulate('click')
+      component.find('footer').children('ul').children('li').at(1).children('a').simulate('click')
       expect(props.onShow.called).to.be.true
       expect(props.onShow.args[0][0]).to.equal(todoFilters.SHOW_ACTIVE)
     })
 
     it ('should not have a Clear Completed button when there are no completed todos', () => {
       const { component } = setup ({ completedCount: 0 })
-      const button = component.children('button')
+      const button = component.find('footer').children('button')
       expect(button.length).to.equal(0)
     })
 
     it ('should have a Clear Completed button when there are completed todos', () => {
       const { component } = setup ({ completedCount: 1 })
-      const button = component.children('button')
+      const button = component.find('footer').children('button')
       expect(button.prop('className')).to.equal('clear-completed')
     })
 
     it('should call onClearCompleted() when the clear completed button is clicked', () => {
       const { component, props } = setup ({ completedCount: 1 })
-      component.children('button').simulate('click')
+      component.find('footer').children('button').simulate('click')
       expect(props.onClearCompleted.called).to.be.true
     })
   })
