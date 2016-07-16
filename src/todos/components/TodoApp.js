@@ -17,7 +17,7 @@ class TodoApp extends Component {
         <Style rules={styles.root} />
 
         <div style={styles.todoapp} >
-          <Header addTodo={actions.add} />
+          <Header todos={todos} actions={actions} />
           <MainSection todos={todos} actions={actions} />
         </div>
       </StyleRoot>

@@ -1,6 +1,8 @@
 'use strict'
 
 import React from 'react'
+import { List, Map } from 'immutable'
+import uuid from 'uuid'
 import { expect } from 'chai'
 import { shallow } from 'enzyme'
 import sinon from 'sinon'
@@ -9,7 +11,14 @@ import TodoTextInput from '../../../src/todos/components/TodoTextInput'
 
 function setup () {
   const props = {
-    addTodo: sinon.spy ()
+    todos: List ([
+      Map ({ id: uuid.v4(), description: 'Use Redux', completed: false, }),
+      Map ({ id: uuid.v4(), description: 'Run the tests', completed: false, })
+    ]),
+    actions: {
+      add: sinon.spy (),
+      completeAll: sinon.spy (),
+    }
   }
 
   const component = shallow (
@@ -36,6 +45,12 @@ describe ('Header component', () => {
         expect(h1.text()).to.equal('todos')
     })
 
+    it ('should include a checkbox to toggle task completion', () => {
+      const { component } = setup ()
+      const toggle = component.children('div').at(0)
+      expect(toggle.text()).to.equal('❯')
+    })
+
     it ('should have a TodoTextInput field', () => {
         const { component } = setup ()
         const input = component.children(TodoTextInput)
@@ -46,13 +61,19 @@ describe ('Header component', () => {
   })
 
   describe ('Should behave correctly', () => {
-    it ('should call addTodo if length of text is greater than 0', () => {
+    it ('should call completeAll() when the toggle button is clicked', () => {
+      const { component, props } = setup ()
+      component.children('div').children('div').simulate ('click') 
+      expect(props.actions.completeAll.called).to.be.true
+    })
+
+    it ('should call add() if length of text is greater than 0', () => {
         const { component, props } = setup ()
         const input = component.children(TodoTextInput)
         input.props().onSave ('')
-        expect(props.addTodo.called).to.be.false
+        expect(props.actions.add.called).to.be.false
         input.props().onSave ('Use Redux')
-        expect(props.addTodo.called).to.be.true
+        expect(props.actions.add.called).to.be.true
     })
   })
 })

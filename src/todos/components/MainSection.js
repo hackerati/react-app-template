@@ -21,21 +21,6 @@ class MainSection extends Component {
     this.props.actions.clearCompleted()
   }
 
-  renderToggleAll (completedCount) {
-    const { todos, actions } = this.props
-    if (todos.size > 0) {
-      return (
-        <div style={styles.toggleAll}>
-          <div onClick={actions.completeAll}
-               style={(completedCount === todos.size ? styles.toggleAllChecked :
-                                                       styles.toggleAllUnchecked)}>
-            ❯
-          </div>
-        </div>
-      )
-    }
-  }
-
   renderFooter (completedCount) {
     const { todos } = this.props
     const { filter } = this.state
@@ -66,7 +51,6 @@ class MainSection extends Component {
 
     return (
       <section style={styles.mainSection}>
-        { this.renderToggleAll (completedCount) }
         <ul style={styles.todoList}>
           { filteredTodos.map ( todo =>
               <TodoItem key={todo.get('id')} todo={todo} {...actions} />
@@ -89,32 +73,11 @@ const styles = {
     zIndex: 2,
     borderTop: '1px solid #e6e6e6',
   },
+
   todoList: {
     margin: 0,
     padding: 0,
     listStyle: 'none'
-  },
-  toggleAll: {
-    position: 'absolute',
-    top: -55,
-    left: -5,
-    width: 60,
-    height: 34,
-    textAlign: 'center',
-    border: 'none',
-    cursor: 'pointer',
-  },
-  toggleAllUnchecked: {
-    fontSize: 22,
-    color: '#e6e6e6',
-    padding: '10px 27px 10px 27px',
-    transform: 'rotate(90deg)',
-  },
-  toggleAllChecked: {
-    fontSize: 22,
-    color: '#737373',
-    padding: '10px 27px 10px 27px',
-    transform: 'rotate(90deg)',
   },
 }
 

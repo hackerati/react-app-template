@@ -8,7 +8,29 @@ import TodoTextInput from './TodoTextInput'
 class Header extends Component {
   handleSave (text) {
     if (text.length !== 0) {
-      this.props.addTodo (text)
+      this.props.actions.add (text)
+    }
+  }
+
+  handleCompleteAll () {
+    this.props.actions.completeAll ()
+  }
+
+  renderToggleAll () {
+    const { todos } = this.props
+
+    const completedCount = todos.filter ( todo => todo.get('completed') ).size
+
+    if (todos.size > 0) {
+      return (
+        <div style={styles.toggleAll}>
+          <div onClick={this.handleCompleteAll.bind(this)}
+               style={(completedCount === todos.size ? styles.toggleAllChecked :
+                                                       styles.toggleAllUnchecked)}>
+            ❯
+          </div>
+        </div>
+      )
     }
   }
 
@@ -16,6 +38,7 @@ class Header extends Component {
     return (
       <header>
         <h1 style={styles.h1} >todos</h1>
+        { this.renderToggleAll () }
         <TodoTextInput placeholder="What needs to be done?"
                        onSave={this.handleSave.bind(this)}
                        isNew
@@ -26,7 +49,8 @@ class Header extends Component {
 }
  
 Header.propTypes = {
-  addTodo: PropTypes.func.isRequired
+  todos: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired
 }
 
 const styles = {
@@ -43,8 +67,35 @@ const styles = {
     textRendering: 'optimizeLegibility',
   },
 
+  toggleAll: {
+    position: 'absolute',
+    top: 11,
+    left: -5,
+    width: 60,
+    height: 34,
+    textAlign: 'center',
+    border: 'none',
+    cursor: 'pointer',
+    zIndex: 2,
+  },
+
+  toggleAllUnchecked: {
+    fontSize: 22,
+    color: '#e6e6e6',
+    padding: '10px 27px 10px 27px',
+    transform: 'rotate(90deg)',
+  },
+
+  toggleAllChecked: {
+    fontSize: 22,
+    color: '#737373',
+    padding: '10px 27px 10px 27px',
+    transform: 'rotate(90deg)',
+  },
+
   todoTextInputNew: {
     position: 'relative',
+    top: 1,
     margin: 0,
     width: '100%',
     fontFamily: 'inherit',

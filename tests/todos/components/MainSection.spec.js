@@ -43,12 +43,6 @@ describe ('MainSection component', () => {
       expect(component.type()).to.equal(MainSection)
     })
 
-    it ('should include a checkbox to toggle task completion', () => {
-      const { component } = setup ()
-      const toggle = component.children('div').at(0)
-      expect(toggle.text()).to.equal('❯')
-    })
-
     it ('should include a list of tasks', () => {
       const { component, props } = setup ()
       const ul = component.children('ul')
@@ -93,12 +87,6 @@ describe ('MainSection component', () => {
       const item = component.children('ul').children(0) // get the first item
       item.find('svg').at(0).simulate ('click') // change its input checkbox 
       expect(props.actions.complete.called).to.be.true
-    })
-
-    it ('should call completeAll() when the toggle button is clicked', () => {
-      const { component, props } = setup ()
-      component.children('div').children('div').simulate ('click') 
-      expect(props.actions.completeAll.called).to.be.true
     })
 
     it ('should call clearCompleted() when the clear completed button is clicked', () => {
