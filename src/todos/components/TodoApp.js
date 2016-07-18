@@ -58,10 +58,12 @@ const styles = {
       WebkitFontSmoothing: 'antialiased',
       MozOsxFontSmoothing: 'grayscale',
     },
+
     html: {
       margin: 0,
       padding: 0,
     },
+
     button: {
       margin: 0,
       padding: 0,
@@ -77,6 +79,7 @@ const styles = {
       WebkitFontSmoothing: 'antialiased',
       MozOsxFontSmoothing: 'grayscale'
     },
+
     '::-webkit-input-placeholder': {
       fontStyle: 'italic',
       fontWeight: '300',
@@ -97,6 +100,7 @@ const styles = {
       fontWeight: '300',
       color: '#e6e6e6',
     },
+
     mediaQueries: {
       'screen and (-webkit-min-device-pixel-ratio:0)': {
         '.toggle-all, .todo-list li .toggle': {

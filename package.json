@@ -6,7 +6,7 @@
   "scripts": {
     "monitor": "node_modules/.bin/reactotron",
     "lint": "eslint .",
-    "test": "mocha tests/todos --compilers js:babel-core/register --require ./tests/test_helper.js  --recursive",
+    "test": "eslint .; mocha tests/todos --compilers js:babel-core/register --require ./tests/test_helper.js  --recursive",
     "build": "webpack --config webpack.config.prod.js --progress --profile --colors",
     "start": "node server"
   },

@@ -71,9 +71,8 @@ class TodoItem extends Component {
     const { todo } = this.props
     return (
       <li style={styles.todoListItemEditing} >
-        <TodoTextInput text={ todo.get('description') } editing={ this.state.editing }
-                       onSave={ (text) => this.handleSave (todo.get('id'), text) }
-                       style={styles.todoTextInputEditing} />
+        <TodoTextInput text={ todo.get('description') } 
+                       onSave={ (text) => this.handleSave (todo.get('id'), text) } />
       </li>
     )
   }
@@ -135,29 +134,6 @@ const styles = {
   todoLabelCompleted: {
     color: '#d9d9d9',
     textDecoration: 'line-through'
-  },
-
-  todoTextInputEditing: {
-    position: 'relative',
-    margin: '0 0 0 43px',
-    width: 506,
-    fontFamily: 'inherit',
-    fontSize: 24,
-    fontWeight: 'inherit',
-    lineHeight: '1.4em',
-    border: '1px solid #999',
-    boxShadow: 'inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2)',
-    boxSizing: 'border-box',
-    WebkitFontSmoothing: 'antialiased',
-    MozOsxFontSmoothing: 'grayscale',
-    padding: '12px 16px',
-    display: 'block',
-    ':focus': {
-      outline: 0
-    },
-    '.hidden': {
-      display: 'none'
-    },
   },
 
   deleteButton: {

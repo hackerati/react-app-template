@@ -37,10 +37,7 @@ class Header extends Component {
       <header>
         <h1 style={styles.h1} >todos</h1>
         { this.renderToggleAll () }
-        <TodoTextInput placeholder="What needs to be done?"
-                       onSave={this.handleSave.bind(this)}
-                       isNew
-                       style={styles.todoTextInputNew} />
+        <TodoTextInput placeholder="What needs to be done?" onSave={this.handleSave.bind(this)} isNew />
       </header>
     )
   }
@@ -82,29 +79,6 @@ const styles = {
 
   toggleAllChecked: {
     color: '#737373',
-  },
-
-  todoTextInputNew: {
-    position: 'relative',
-    margin: 0,
-    width: '100%',
-    fontFamily: 'inherit',
-    fontSize: 24,
-    color: 'inherit',
-    lineHeight: '1.4em',
-    boxSizing: 'border-box',
-    WebkitFontSmoothing: 'antialiased',
-    MozOsxFontSmoothing: 'grayscale',
-    padding: '16px 16px 16px 60px',
-    border: 'none',
-    background: 'rgba(0, 0, 0, 0.003)',
-    boxShadow: 'inset 0 -2px 1px rgba(0,0,0,0.03)',
-    ':focus': {
-      outline: 0
-    },
-    '.hidden': {
-      display: 'none'
-    },
   },
 }
 
