@@ -23,12 +23,10 @@ class Header extends Component {
 
     if (todos.size > 0) {
       return (
-        <div style={styles.toggleAll}>
-          <div onClick={this.handleCompleteAll.bind(this)}
-               style={(completedCount === todos.size ? styles.toggleAllChecked :
-                                                       styles.toggleAllUnchecked)}>
-            ❯
-          </div>
+        <div onClick={this.handleCompleteAll.bind(this)}
+             style={[ styles.toggleAll, 
+                      completedCount === todos.size && styles.toggleAllChecked ]}>
+          ❯
         </div>
       )
     }
@@ -69,33 +67,25 @@ const styles = {
 
   toggleAll: {
     position: 'absolute',
-    top: 11,
-    left: -5,
+    top: 16,
+    left: -12,
     width: 60,
     height: 34,
     textAlign: 'center',
     border: 'none',
     cursor: 'pointer',
     zIndex: 2,
-  },
-
-  toggleAllUnchecked: {
     fontSize: 22,
     color: '#e6e6e6',
-    padding: '10px 27px 10px 27px',
     transform: 'rotate(90deg)',
   },
 
   toggleAllChecked: {
-    fontSize: 22,
     color: '#737373',
-    padding: '10px 27px 10px 27px',
-    transform: 'rotate(90deg)',
   },
 
   todoTextInputNew: {
     position: 'relative',
-    top: 1,
     margin: 0,
     width: '100%',
     fontFamily: 'inherit',
@@ -109,6 +99,12 @@ const styles = {
     border: 'none',
     background: 'rgba(0, 0, 0, 0.003)',
     boxShadow: 'inset 0 -2px 1px rgba(0,0,0,0.03)',
+    ':focus': {
+      outline: 0
+    },
+    '.hidden': {
+      display: 'none'
+    },
   },
 }
 

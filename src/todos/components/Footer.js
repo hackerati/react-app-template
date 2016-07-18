@@ -31,7 +31,8 @@ class Footer extends Component {
         { filters.map ( filter =>
           <li key={filter.type} style={styles.filterListItem} >
             <a key={filter.type} onClick={() => onShow(filter.type)}
-               style={ filter.type === selectedFilter ? styles.filterLinkSelected : styles.filterLink }>
+               style={[ styles.filterLink,
+                        filter.type === selectedFilter && styles.filterLinkSelected ]}>
               { filter.label }
             </a>
           </li>
@@ -95,7 +96,7 @@ const styles = {
     height: 50,
     overflow: 'hidden',
     boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2)'
-    },
+  },
 
   todoCount: {
     float: 'left',
@@ -131,15 +132,7 @@ const styles = {
   },
 
   filterLinkSelected: {
-    cursor: 'pointer',
-    color: 'inherit',
-    margin: 3,
-    padding: '3px 7px',
-    textDecoration: 'none',
-    borderWidth: '1px',
-    borderStyle: 'solid',
     borderColor: 'rgba(175, 47, 47, 0.2)',
-    borderRadius: 3,
   },
 
   clearCompleted: {

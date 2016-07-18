@@ -16,7 +16,7 @@ class TodoApp extends Component {
       <StyleRoot>
         <Style rules={styles.root} />
 
-        <div style={styles.todoapp} >
+        <div style={styles.todoApp} >
           <Header todos={todos} actions={actions} />
           <MainSection todos={todos} actions={actions} />
         </div>
@@ -77,12 +77,6 @@ const styles = {
       WebkitFontSmoothing: 'antialiased',
       MozOsxFontSmoothing: 'grayscale'
     },
-    ':focus': {
-      outline: 0
-    },
-    '.hidden': {
-      display: 'none'
-    },
     '::-webkit-input-placeholder': {
       fontStyle: 'italic',
       fontWeight: '300',
@@ -128,7 +122,7 @@ const styles = {
       },
     },
   },
-  todoapp: {
+  todoApp: {
     background: '#fff',
     margin: '130px 0 40px 0',
     position: 'relative',

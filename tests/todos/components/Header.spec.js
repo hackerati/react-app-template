@@ -63,7 +63,7 @@ describe ('Header component', () => {
   describe ('Should behave correctly', () => {
     it ('should call completeAll() when the toggle button is clicked', () => {
       const { component, props } = setup ()
-      component.children('div').children('div').simulate ('click') 
+      component.children('div').simulate ('click') 
       expect(props.actions.completeAll.called).to.be.true
     })
 

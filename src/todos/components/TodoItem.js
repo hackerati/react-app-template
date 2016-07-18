@@ -57,7 +57,7 @@ class TodoItem extends Component {
       <li key={todo.get('id')} style={styles.todoListItem} >
          { todo.get ('completed') ? this.renderButtonChecked () : this.renderButtonUnchecked () }
         <label onDoubleClick={ this.handleDoubleClick.bind (this) }
-               style={todo.get('completed') ? styles.todoLabelCompleted : styles.todoLabel} >
+               style={[ styles.todoLabel, todo.get('completed') && styles.todoLabelCompleted ]}>
           { todo.get('description') }
         </label>
         { Radium.getState(this.state, todo.get('id'), ':hover') ? (
@@ -121,9 +121,6 @@ const styles = {
     top: 0,
     bottom: 0,
     margin: 'auto 0',
-    //border: 'none',
-    //WebkitAppearance: 'none',
-    //appearance: 'none',
   },
 
   todoLabel: {
@@ -136,12 +133,6 @@ const styles = {
   },
 
   todoLabelCompleted: {
-    wordBreak: 'break-all',
-    padding: '15px 60px 15px 15px',
-    marginLeft: 45,
-    display: 'block',
-    lineHeight: 1.2,
-    transition: 'color 0.4s',
     color: '#d9d9d9',
     textDecoration: 'line-through'
   },
@@ -161,6 +152,12 @@ const styles = {
     MozOsxFontSmoothing: 'grayscale',
     padding: '12px 16px',
     display: 'block',
+    ':focus': {
+      outline: 0
+    },
+    '.hidden': {
+      display: 'none'
+    },
   },
 
   deleteButton: {
