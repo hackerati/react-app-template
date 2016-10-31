@@ -15,6 +15,11 @@ class CounterApp extends Component {
   }
 }
 
+CounterApp.propTypes = {
+  counter:React.PropTypes.object.isRequired,
+  dispatch:React.PropTypes.func.isRequired
+}
+
 function select (state) {
   return {
     counter: state.counter.get ('value')

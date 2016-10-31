@@ -5,7 +5,9 @@ import { Provider } from 'react-redux'
 import { CounterApp } from '../counter'
 import DevTools from './DevTools'
 
-export default class Root extends Component {
+import { PropTypes } from '../PropTypes'
+
+class Root extends Component {
   render () {
     const { store } = this.props
     return (
@@ -18,3 +20,9 @@ export default class Root extends Component {
     )
   }
 }
+
+Root.propTypes = {
+  store:PropTypes.store.isRequired
+};
+
+export default Root;
