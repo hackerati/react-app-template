@@ -15,26 +15,26 @@ Basic React application template, including:
 ## Start Your Own Project
 
 ```bash
-$ git clone git@github.com:thehackerati/react-app-template.git my_app
+$ git clone git@github.com:thehackerati/react-app-template.git my_app   # clone the repository
 $ cd my_app
-$ npm install
+$ npm install                                                           # install the dependencies
 ```
 
 ## Run in development mode
 
 ```bash
-$ npm test
-$ NODE_ENV='development' npm start
-$ open http://localhost:3000
+$ npm test                                                              # run the tests
+$ NODE_ENV='development' npm start                                      # start the app with the development config
 ```
+And the open http://localhost:4000 in your browser
 
 ## Run in production mode
 
 ```bash
 $ npm run build
 $ NODE_ENV='production' npm start
-$ open http://localhost:3000
 ```
+And the open http://localhost:4000 in your browser
 
 ## Tutorial
 
@@ -44,19 +44,38 @@ If you're new you React + Redux, try our [tutorial] (https://www.gitbook.com/boo
 
 ```bash
 .
-├── index.html                  # Single page for the application
-├── server.js                   # Express server
-├── src
-│   ├── containers              # Root container
-│   ├── counter                 # Placeholder app, implements simple immutable counter
-│   ├── index.js                # Start the app by rendering the  AppContainer
-│   ├── reducers.js             # Root reducer, combines app reducers
-│   └── store                   # Single store
-├── tests
-│   ├── counter                 # Tests for placeholder app
-│   └── test_helper.js          # Shared test utils
-├── webpack.config.dev.js       # Webpack config for development
-└── webpack.config.prod.js      # Webpack config for production
+├── src/
+│ ├── containers/                 # Root container
+│ │ ├── DevTools.js
+│ │ ├── Root.dev.js
+│ │ ├── Root.js
+│ │ └── Root.prod.js
+│ ├── counter/                    # Placeholder app, implements simple immutable counter
+│ │ └──...
+│ ├── store/                      # Single store
+│ │ ├── configureStore.dev.js
+│ │ ├── configureStore.js
+│ │ └── configureStore.prod.js
+│ ├── PropTypes.js                # Custom PropType checker for the redux store
+│ ├── index.js                    # Start the app by rendering the AppContainer
+│ └── reducers.js                 # Root reducer, combines app reducers
+├── tests/
+│ ├── counter/                    # Tests for the placeholder app
+│ │ └──...
+│ └── test_helper.js              # Shared test utils
+├── .babelrc                      # Babel local configuration file
+├── .eslintignore                 # ESLint ignore file
+├── .eslintrc                     # ESLint local configuration file
+├── .gitignore                    # git ignore file
+├── .travis.yml                   # Travis CI configuration file
+├── index.html                    # Single page for the application
+├── LICENSE                       # The MIT License
+├── package.json                  # Metadata to identify the project/handle the project's dependencies
+├── package-lock.json             # Automatically maintained - modifications of node_modules/package.json
+├── README.md                     # git ReadMe file
+├── server.js                     # Express server
+├── webpack.config.dev.js         # Webpack config for development
+└── webpack.config.prod.js        # Webpack config for production
 ```
 
 ## Resources & Credits
