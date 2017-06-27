@@ -1,8 +1,8 @@
-'use strict'
+'use strict';
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { AppContainer } from 'react-hot-loader'
+import {AppContainer} from 'react-hot-loader'
 import configureStore from './store/configureStore'
 import Root from './containers/Root'
 import Reactotron from 'reactotron'
@@ -11,12 +11,12 @@ if (process.env.NODE_ENV === 'development') {
   Reactotron.connect() // connect with defaults
 }
 
-const store = configureStore ()
+const store = configureStore();
 const rootElement = document.getElementById('root');
 
 ReactDOM.render(
   <AppContainer>
-    <Root store={store} />
+    <Root store={store}/>
   </AppContainer>,
   rootElement
 );
@@ -26,7 +26,7 @@ if (module.hot) {
     const NextRoot = require('./containers/Root').default;
     ReactDOM.render(
       <AppContainer>
-         <NextRoot store={store} />
+        <NextRoot store={store}/>
       </AppContainer>,
       rootElement
     );
