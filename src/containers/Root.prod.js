@@ -2,8 +2,8 @@
 
 import React, {Component} from 'react'
 import {Provider} from 'react-redux'
-import {CounterApp} from '../counter'
 
+import {CounterApp} from '../counter'
 import PropTypes from '../PropTypes'
 
 class Root extends Component {
