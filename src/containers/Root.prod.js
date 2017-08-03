@@ -2,7 +2,6 @@
 
 import React, {Component} from 'react'
 import {Provider} from 'react-redux'
-
 import {CounterApp} from '../counter'
 import PropTypes from '../PropTypes'
 
@@ -11,7 +10,7 @@ class Root extends Component {
     const {store} = this.props;
     return (
       <Provider store={store}>
-        <CounterApp />
+        <CounterApp/>
       </Provider>
     )
   }

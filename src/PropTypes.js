@@ -1,4 +1,4 @@
-var PropTypes = {
+let PropTypes = {
   store: createStoreChecker()
 };
 
