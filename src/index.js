@@ -7,11 +7,6 @@ import ReactDOM from 'react-dom'
 import {AppContainer} from 'react-hot-loader'
 import configureStore from './store/configureStore'
 import Root from './containers/Root'
-import Reactotron from 'reactotron'
-
-if (process.env.NODE_ENV === 'development') {
-  Reactotron.connect() // connect with defaults
-}
 
 const store = configureStore();
 const rootElement = document.getElementById('root');
