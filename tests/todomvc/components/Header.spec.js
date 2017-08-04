@@ -22,6 +22,14 @@ describe('Header component', () => {
       const {component} = setup();
 
       expect(component.type()).to.equal('header')
+    });
+
+    it('Should have a title', () => {
+      const {component} = setup();
+      const h1 = component.children('h1');
+
+      expect(h1.type()).to.equal('h1');
+      expect(h1.text()).to.equal('todos')
     })
   })
 });
