@@ -32,10 +32,15 @@ export default class TodoTextInput extends Component {
     }
   }
 
+  handleBlur(e) {
+    this.props.onSave(e.target.value)
+  }
+
   render() {
     return (
       <input type="text" placeholder={this.props.placeholder} value={this.state.text}
-             onChange={this.handleChange.bind(this)} onKeyDown={this.handleSubmit.bind(this)}/>
+             onChange={this.handleChange.bind(this)} onKeyDown={this.handleSubmit.bind(this)}
+             onBlur={this.handleBlur.bind(this)}/>
     )
   }
 }
