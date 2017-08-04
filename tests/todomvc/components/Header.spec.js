@@ -5,6 +5,7 @@ import {expect} from 'chai'
 import {shallow} from 'enzyme'
 
 import Header from '../../../src/todomvc/components/Header'
+import TodoTextInput from '../../../src/todomvc/components/TodoTextInput'
 
 function setup() {
   const component = shallow(
@@ -30,6 +31,15 @@ describe('Header component', () => {
 
       expect(h1.type()).to.equal('h1');
       expect(h1.text()).to.equal('todos')
+    });
+
+    it('Should have a TodoTextInput field', () => {
+      const {component} = setup();
+      const input = component.children(TodoTextInput);
+
+      expect(input.type()).to.equal(TodoTextInput);
+      expect(input.props().placeholder).to.equal('What needs to be done?');
+      expect(input.props().isNew).to.equal(true)
     })
   })
 });
