@@ -16,9 +16,14 @@ export default class TodoTextInput extends Component {
     }
   }
 
+  handleChange(e) {
+    this.setState({text: e.target.value})
+  }
+
   render() {
     return (
-      <input type="text" placeholder={this.props.placeholder} value={this.state.text}/>
+      <input type="text" placeholder={this.props.placeholder} value={this.state.text}
+             onChange={this.handleChange.bind(this)}/>
     )
   }
 }

@@ -30,5 +30,14 @@ describe('TodoTextInput component', () => {
       expect(component.find('input').at(0).prop('placeholder')).to.equal(props.placeholder);
       expect(component.find('input').at(0).prop('value')).to.equal(props.text)
     })
+  });
+
+  describe('Should behave correctly', () => {
+    it('Should update value on change', () => {
+      const {props, component} = setup();
+
+      component.find('input').at(0).simulate('change', {target: {value: 'todo'}});
+      expect(component.find('input').at(0).prop('value')).to.equal('todo')
+    })
   })
 });
