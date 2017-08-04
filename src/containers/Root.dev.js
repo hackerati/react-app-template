@@ -2,7 +2,7 @@
 
 import React, {Component} from 'react'
 import {Provider} from 'react-redux'
-import {CounterApp} from '../counter'
+import {TodoApp} from '../todomvc'
 import PropTypes from '../PropTypes'
 import DevTools from './DevTools'
 
@@ -12,7 +12,7 @@ class Root extends Component {
     return (
       <Provider store={store}>
         <div>
-          <CounterApp/>
+          <TodoApp/>
           <DevTools/>
         </div>
       </Provider>
