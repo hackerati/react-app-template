@@ -3,17 +3,25 @@
 import React from 'react'
 import {expect} from 'chai'
 import {shallow} from 'enzyme'
+import sinon from 'sinon'
 
 import Header from '../../../src/todomvc/components/Header'
 import TodoTextInput from '../../../src/todomvc/components/TodoTextInput'
 
 function setup() {
+  const props = {
+    actions: {
+      addTodo: sinon.spy(),
+    }
+  };
+
   const component = shallow(
-    <Header/>
+    <Header {...props} />
   );
 
   return {
-    component: component
+    component: component,
+    props: props
   }
 }
 
@@ -40,6 +48,18 @@ describe('Header component', () => {
       expect(input.type()).to.equal(TodoTextInput);
       expect(input.props().placeholder).to.equal('What needs to be done?');
       expect(input.props().isNew).to.equal(true)
+    })
+  });
+
+  describe('Should behave correctly', () => {
+    it('Should call addTodo() if length of text is greater than 0', () => {
+      const {component, props} = setup();
+      const input = component.children(TodoTextInput);
+
+      input.props().onSave('');
+      expect(props.actions.addTodo.called).to.be.false;
+      input.props().onSave('Use Redux');
+      expect(props.actions.addTodo.called).to.be.true
     })
   })
 });
