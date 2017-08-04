@@ -7,12 +7,13 @@ import sinon from 'sinon'
 
 import TodoTextInput from '../../../src/todomvc/components/TodoTextInput'
 
-function setup() {
-  const props = {
+function setup(propOverrides) {
+  const props = Object.assign({
     text: 'my todo',
     placeholder: 'do it',
     onSave: sinon.spy(),
-  };
+    isNew: false
+  }, propOverrides);
   const component = shallow(
     <TodoTextInput {...props} />
   );
@@ -51,6 +52,16 @@ describe('TodoTextInput component', () => {
       });
       expect(props.onSave.called).to.be.true;
       expect(props.onSave.args[0][0]).to.equal('new todo')
+    });
+
+    it('Should reset state on return key press if isNew', () => {
+      const {props, component} = setup({isNew: true});
+
+      component.find('input').at(0).simulate('keydown', {
+        which: 13, // RETURN KEY
+        target: {value: 'new todo'}
+      });
+      expect(component.find('input').at(0).prop('value')).to.equal('')
     })
   })
 });

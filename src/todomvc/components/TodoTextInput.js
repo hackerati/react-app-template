@@ -7,7 +7,8 @@ export default class TodoTextInput extends Component {
   static propTypes = {
     text: PropTypes.string,
     placeholder: PropTypes.string,
-    onSave: PropTypes.func.isRequired
+    onSave: PropTypes.func.isRequired,
+    isNew: PropTypes.bool
   };
 
   constructor(props, context) {
@@ -24,7 +25,10 @@ export default class TodoTextInput extends Component {
   handleSubmit(e) {
     const text = e.target.value.trim();
     if (e.which === 13) {
-      this.props.onSave(text)
+      this.props.onSave(text);
+      if (this.props.isNew) {
+        this.setState({text: ''})
+      }
     }
   }
 
