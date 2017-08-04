@@ -33,7 +33,9 @@ export default class TodoTextInput extends Component {
   }
 
   handleBlur(e) {
-    this.props.onSave(e.target.value)
+    if (!this.props.isNew) {
+      this.props.onSave(e.target.value)
+    }
   }
 
   render() {

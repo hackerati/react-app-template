@@ -70,6 +70,13 @@ describe('TodoTextInput component', () => {
       component.find('input').at(0).simulate('blur', {target: {value: 'new todo'}});
       expect(props.onSave.called).to.be.true;
       expect(props.onSave.args[0][0]).to.equal('new todo')
+    });
+
+    it('Should not call onSave() on blur if isNew', () => {
+      const {props, component} = setup({isNew: true});
+
+      component.find('input').at(0).simulate('blur', {target: {value: 'new todo'}});
+      expect(props.onSave.called).to.be.false;
     })
   })
 });
