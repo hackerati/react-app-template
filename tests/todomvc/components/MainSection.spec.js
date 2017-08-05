@@ -17,7 +17,8 @@ function setup() {
       Map({id: uuid.v4(), description: 'Run the tests', completed: false})
     ]),
     actions: {
-      editTodo: sinon.spy ()
+      editTodo: sinon.spy(),
+      deleteTodo: sinon.spy()
     }
   };
 

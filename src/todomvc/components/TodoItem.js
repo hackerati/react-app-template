@@ -7,7 +7,8 @@ import TodoTextInput from './TodoTextInput'
 export default class TodoItem extends Component {
   static propTypes = {
     todo: PropTypes.object.isRequired,
-    editTodo: PropTypes.func.isRequired
+    editTodo: PropTypes.func.isRequired,
+    deleteTodo: PropTypes.func.isRequired
   };
 
   constructor(props, context) {
@@ -27,25 +28,25 @@ export default class TodoItem extends Component {
   }
 
   renderTodoListItem() {
-    const {todo} = this.props;
+    const {todo, deleteTodo} = this.props;
 
     return (
       <li>
         <label onDoubleClick={this.handleDoubleClick.bind(this)}>
           {todo.get('description')}
         </label>
-        <button className="destroy">delete todo</button>
+        <button className="destroy" onClick={ () => deleteTodo(todo.get('id')) }>delete todo</button>
       </li>
     )
   }
 
   renderTodoTextInput() {
-    const {todo} = this.props;
+    const {todo, deleteTodo} = this.props;
 
     return (
       <li>
         <TodoTextInput text={todo.get('description')} onSave={(text) => this.handleSave(todo.get('id'), text)}/>
-        <button className="destroy">delete todo</button>
+        <button className="destroy" onClick={ () => deleteTodo(todo.get('id')) }>delete todo</button>
       </li>
     )
   }

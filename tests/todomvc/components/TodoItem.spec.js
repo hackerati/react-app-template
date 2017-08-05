@@ -12,7 +12,8 @@ import TodoItem from '../../../src/todomvc/components/TodoItem'
 function setup() {
   const props = {
     todo: Map({id: uuid.v4(), description: 'Use Redux', completed: false}),
-    editTodo: sinon.spy()
+    editTodo: sinon.spy(),
+    deleteTodo: sinon.spy()
   };
   const component = shallow(
     <TodoItem {...props} />
@@ -76,6 +77,14 @@ describe('TodoItem component', () => {
       component.find('TodoTextInput').props().onSave('Use Redux'); // update
       component.update(); // force component to re-render
       expect(component.children('label')).to.have.length(1) // switched back to label
+    });
+
+    it('Should call deleteTodo() when the delete button is clicked', () => {
+      const {component, props} = setup();
+      const button = component.find('button');
+
+      button.simulate('click');
+      expect(props.deleteTodo.called).to.be.true
     })
   })
 });
