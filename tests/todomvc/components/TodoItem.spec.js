@@ -59,6 +59,15 @@ describe('TodoItem component', () => {
       component.children('label').simulate('doubleclick'); // switch to edit mode
       component.find('TodoTextInput').props().onSave('Use Redux');
       expect(props.editTodo.called).to.be.true
+    });
+
+    it('Should leave edit mode after TodoTextInput onSave', () => {
+      const {component, props} = setup();
+
+      component.children('label').simulate('doubleclick'); // switch to edit mode
+      component.find('TodoTextInput').props().onSave('Use Redux'); // update
+      component.update(); // force component to re-render
+      expect(component.children('label')).to.have.length(1) // switched back to label
     })
   })
 });

@@ -22,7 +22,8 @@ export default class TodoItem extends Component {
   }
 
   handleSave(id, text) {
-    this.props.editTodo(id, text)
+    this.props.editTodo(id, text);
+    this.setState({editing: false})
   }
 
   renderTodoListItem() {
