@@ -29,5 +29,13 @@ describe('TodoMVC actions', () => {
     };
 
     expect(todomvc.actions.deleteTodo('my_id')).to.deep.equal(expectedAction)
+  });
+
+  it('Should create an action to toggle a todo between completed and not completed', () => {
+    const expectedAction = {
+      type: todomvc.types.TOGGLE_COMPLETE_ONE, id: 'my_id'
+    };
+
+    expect(todomvc.actions.toggleCompleteOneTodo('my_id')).to.deep.equal(expectedAction)
   })
 });

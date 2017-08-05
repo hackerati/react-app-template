@@ -13,3 +13,7 @@ export function editTodo(id, text) {
 export function deleteTodo(id) {
   return {type: types.DELETE, id: id}
 }
+
+export function toggleCompleteOneTodo(id) {
+  return {type: types.TOGGLE_COMPLETE_ONE, id: id}
+}
