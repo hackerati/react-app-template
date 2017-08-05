@@ -11,6 +11,8 @@ export default function reducer(state = List([]), action) {
       return (state.push(Map({id: uuid.v4(), description: action.description, completed: false})));
     case types.EDIT:
       return (state.map(todo => todo.get('id') === action.id ? todo.set('description', action.description) : todo));
+    case types.DELETE:
+      return state.filter(todo => todo.get('id') !== action.id);
     default:
       // just return the same state
       return (state)

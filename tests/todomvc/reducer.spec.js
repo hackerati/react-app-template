@@ -41,5 +41,18 @@ describe('TodoMVC reducer', () => {
     expect(new_state.get(1).get('id')).to.equal(state.get(1).get('id'));
     expect(new_state.get(1).get('description')).to.equal('My updated todo');
     expect(new_state.get(1).get('completed')).to.equal(state.get(1).get('completed'))
+  });
+
+  it('Should handle DELETE todo', () => {
+    const state = List([
+      Map({id: uuid.v4(), description: 'My todo', completed: false}),
+      Map({id: uuid.v4(), description: 'My soon to be deleted todo', completed: false})
+    ]);
+    const new_state = todomvc.reducer(state, {
+      type: todomvc.types.DELETE, id: state.get(1).get('id')
+    });
+
+    expect(new_state.size).to.equal(1);
+    expect(new_state.get(0)).to.equal(state.get(0))
   })
 });
