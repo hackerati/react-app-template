@@ -85,6 +85,14 @@ describe('TodoItem component', () => {
 
       button.simulate('click');
       expect(props.deleteTodo.called).to.be.true
+    });
+
+    it('Should call deleteTodo() when TodoTextInput onSave is called empty', () => {
+      const {component, props} = setup();
+
+      component.children('label').simulate('doubleclick'); // switch to edit mode
+      component.find('TodoTextInput').props().onSave('');
+      expect(props.deleteTodo.called).to.be.true
     })
   })
 });
