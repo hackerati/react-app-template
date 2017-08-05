@@ -5,6 +5,7 @@ import {List, Map} from 'immutable'
 import uuid from 'uuid'
 import {expect} from 'chai'
 import {shallow} from 'enzyme'
+import sinon from 'sinon'
 
 import MainSection from '../../../src/todomvc/components/MainSection'
 import TodoItem from '../../../src/todomvc/components/TodoItem'
@@ -14,7 +15,10 @@ function setup() {
     todos: List([
       Map({id: uuid.v4(), description: 'Use Redux', completed: false}),
       Map({id: uuid.v4(), description: 'Run the tests', completed: false})
-    ])
+    ]),
+    actions: {
+      editTodo: sinon.spy ()
+    }
   };
 
   const component = shallow(

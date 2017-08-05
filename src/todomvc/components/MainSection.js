@@ -7,16 +7,17 @@ import TodoItem from './TodoItem'
 
 export default class MainSection extends Component {
   static propTypes = {
-    todos: PropTypes.object.isRequired
+    todos: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired
   };
 
   render() {
-    const props = this.props;
+    const {todos, actions} = this.props;
 
     return (
       <section>
         <ul>
-          {props.todos.map(todo => <TodoItem key={todo.get('id')} todo={todo}/>)}
+          {todos.map(todo => <TodoItem key={todo.get('id')} todo={todo} {...actions} />)}
         </ul>
       </section>
     )
