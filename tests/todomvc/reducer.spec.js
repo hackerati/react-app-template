@@ -1,7 +1,8 @@
 'use strict';
 
 import {expect} from 'chai'
-import {fromJS, List} from 'immutable'
+import {fromJS, List, Map} from 'immutable'
+import uuid from 'uuid'
 
 import todomvc from '../../src/todomvc'
 
@@ -22,5 +23,23 @@ describe('TodoMVC reducer', () => {
     expect(new_state.first().filterNot((v, k) => k === 'id')).to.equal(fromJS({ // skip uuid id field
       description: description, completed: false
     }))
+  });
+
+  it('Should handle EDIT todo', () => {
+    const state = List([
+      Map({id: uuid.v4(), description: 'My todo', completed: false}),
+      Map({id: uuid.v4(), description: 'My next todo', completed: false})
+    ]);
+    const new_state = todomvc.reducer(state, {
+      type: todomvc.types.EDIT,
+      id: state.get(1).get('id'),
+      description: 'My updated todo'
+    });
+
+    expect(new_state.size).to.equal(2);
+    expect(new_state.get(0)).to.equal(state.get(0));
+    expect(new_state.get(1).get('id')).to.equal(state.get(1).get('id'));
+    expect(new_state.get(1).get('description')).to.equal('My updated todo');
+    expect(new_state.get(1).get('completed')).to.equal(state.get(1).get('completed'))
   })
 });
