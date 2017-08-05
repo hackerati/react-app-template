@@ -13,7 +13,8 @@ function setup() {
   const props = {
     todo: Map({id: uuid.v4(), description: 'Use Redux', completed: false}),
     editTodo: sinon.spy(),
-    deleteTodo: sinon.spy()
+    deleteTodo: sinon.spy(),
+    toggleCompleteOneTodo: sinon.spy()
   };
   const component = shallow(
     <TodoItem {...props} />
@@ -102,6 +103,14 @@ describe('TodoItem component', () => {
       component.children('label').simulate('doubleclick'); // switch to edit mode
       component.find('TodoTextInput').props().onSave('');
       expect(props.deleteTodo.called).to.be.true
+    });
+
+    it('Should call toggleCompleteOneTodo() when the complete status checkbox is changed', () => {
+      const {component, props} = setup();
+      const input = component.find('input');
+
+      input.simulate('change');
+      expect(props.toggleCompleteOneTodo.called).to.be.true
     })
   })
 });
