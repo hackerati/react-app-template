@@ -38,6 +38,14 @@ describe('TodoItem component', () => {
 
       expect(label).to.have.length(1);
       expect(label.children().text()).to.equal(props.todo.get('description'))
+    });
+
+    it('Should have a delete button', () => {
+      const {component, props} = setup();
+      const button = component.children('button');
+
+      expect(button).to.have.length(1);
+      expect(button.children().text()).to.equal('delete todo')
     })
   });
 

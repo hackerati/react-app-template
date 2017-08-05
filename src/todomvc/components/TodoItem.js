@@ -34,6 +34,7 @@ export default class TodoItem extends Component {
         <label onDoubleClick={this.handleDoubleClick.bind(this)}>
           {todo.get('description')}
         </label>
+        <button className="destroy">delete todo</button>
       </li>
     )
   }
@@ -44,6 +45,7 @@ export default class TodoItem extends Component {
     return (
       <li>
         <TodoTextInput text={todo.get('description')} onSave={(text) => this.handleSave(todo.get('id'), text)}/>
+        <button className="destroy">delete todo</button>
       </li>
     )
   }
