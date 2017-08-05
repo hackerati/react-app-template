@@ -35,7 +35,8 @@ export default class TodoItem extends Component {
         <label onDoubleClick={this.handleDoubleClick.bind(this)}>
           {todo.get('description')}
         </label>
-        <button className="destroy" onClick={ () => deleteTodo(todo.get('id')) }>delete todo</button>
+        <input type="checkbox" name="completed"/>completed
+        <button className="destroy" onClick={() => deleteTodo(todo.get('id'))}>delete todo</button>
       </li>
     )
   }
@@ -46,7 +47,8 @@ export default class TodoItem extends Component {
     return (
       <li>
         <TodoTextInput text={todo.get('description')} onSave={(text) => this.handleSave(todo.get('id'), text)}/>
-        <button className="destroy" onClick={ () => deleteTodo(todo.get('id')) }>delete todo</button>
+        <input type="checkbox" name="completed"/>completed
+        <button className="destroy" onClick={() => deleteTodo(todo.get('id'))}>delete todo</button>
       </li>
     )
   }

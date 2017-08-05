@@ -47,6 +47,15 @@ describe('TodoItem component', () => {
 
       expect(button).to.have.length(1);
       expect(button.children().text()).to.equal('delete todo')
+    });
+
+    it('Should have a toggle complete status checkbox', () => {
+      const {component, props} = setup();
+      const checkbox = component.children('input');
+
+      expect(checkbox).to.have.length(1);
+      expect(checkbox.props().type).to.equal('checkbox');
+      expect(checkbox.props().name).to.equal('completed')
     })
   });
 
