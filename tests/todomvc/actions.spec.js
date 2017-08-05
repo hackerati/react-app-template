@@ -21,5 +21,13 @@ describe('TodoMVC actions', () => {
     };
 
     expect(todomvc.actions.editTodo('my_id', description)).to.deep.equal(expectedAction)
+  });
+
+  it('Should create an action to delete a todo', () => {
+    const expectedAction = {
+      type: todomvc.types.DELETE, id: 'my_id'
+    };
+
+    expect(todomvc.actions.deleteTodo('my_id')).to.deep.equal(expectedAction)
   })
 });

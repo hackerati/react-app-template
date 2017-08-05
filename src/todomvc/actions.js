@@ -9,3 +9,7 @@ export function addTodo(text) {
 export function editTodo(id, text) {
   return {type: types.EDIT, id: id, description: text}
 }
+
+export function deleteTodo(id) {
+  return {type: types.DELETE, id: id}
+}
