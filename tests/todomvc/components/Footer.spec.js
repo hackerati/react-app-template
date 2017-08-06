@@ -53,6 +53,21 @@ describe('Footer component', () => {
 
       expect(label.type()).to.equal('label');
       expect(label.text()).to.equal('The number of todos not completed: 1 todo left')
+    });
+
+    it('Should display \'5 todos left\' when active count is 5', () => {
+      const todos = List([
+        Map({id: uuid.v4(), description: 'todo 1', completed: false}),
+        Map({id: uuid.v4(), description: 'todo 2', completed: false}),
+        Map({id: uuid.v4(), description: 'todo 3', completed: false}),
+        Map({id: uuid.v4(), description: 'todo 4', completed: false}),
+        Map({id: uuid.v4(), description: 'todo 5', completed: false})
+      ]);
+      const {component} = setup(todos);
+      const label = component.children('label');
+
+      expect(label.type()).to.equal('label');
+      expect(label.text()).to.equal('The number of todos not completed: 5 todos left')
     })
   })
 });
