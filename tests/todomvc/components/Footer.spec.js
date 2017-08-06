@@ -68,10 +68,29 @@ describe('Footer component', () => {
 
       expect(label.type()).to.equal('label');
       expect(label.text()).to.equal('The number of todos not completed: 5 todos left')
+    })
+  });
+
+  describe('Should behave correctly', () => {
+    it('Should not show \'delete completed\' button when there are no completed todos', () => {
+      const todos = List([
+        Map({id: uuid.v4(), description: 'todo 1', completed: false}),
+        Map({id: uuid.v4(), description: 'todo 2', completed: false}),
+        Map({id: uuid.v4(), description: 'todo 3', completed: false})
+      ]);
+      const {component} = setup(todos);
+      const button = component.children('button');
+
+      expect(button).to.have.length(0)
     });
 
-    it('Should have a delete all completed button', () => {
-      const {component} = setup();
+    it('Should show \'delete completed\' button when there is at least one completed todo', () => {
+      const todos = List([
+        Map({id: uuid.v4(), description: 'todo 1', completed: false}),
+        Map({id: uuid.v4(), description: 'todo 2', completed: true}),
+        Map({id: uuid.v4(), description: 'todo 3', completed: false})
+      ]);
+      const {component} = setup(todos);
       const button = component.children('button');
 
       expect(button).to.have.length(1);

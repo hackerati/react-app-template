@@ -8,6 +8,11 @@ export default class Footer extends Component {
     todos: PropTypes.object
   };
 
+  static hasCompleted(todos) {
+    if (typeof todos === "undefined") return false;
+    else return todos.filter(todo => todo.get('completed') === true).count() > 0;
+  }
+
   static countNotCompleted(todos) {
     if (typeof todos === "undefined") return '';
     else if (todos.filter(todo => todo.get('completed') !== true).count() === 0) return 'No todos left';
@@ -21,7 +26,7 @@ export default class Footer extends Component {
     return (
       <footer>
         <label>The number of todos not completed: {Footer.countNotCompleted(todos)}</label>
-        <button>delete completed</button>
+        { Footer.hasCompleted(todos) && <button>delete completed</button> }
       </footer>
     )
   }
