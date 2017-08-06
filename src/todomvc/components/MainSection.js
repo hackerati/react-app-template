@@ -44,7 +44,7 @@ export default class MainSection extends Component {
           {todos.map(todo => this.showTodo.bind(this)(todo.get('completed')) &&
             <TodoItem key={todo.get('id')} todo={todo} {...actions} />)}
         </ul>
-        <Footer todos={todos}/>
+        <Footer todos={todos} deleteCompletedTodos={actions.deleteCompletedTodos}/>
         <input id="id_show_all"
                type="radio"
                value="show_all"

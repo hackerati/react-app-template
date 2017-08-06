@@ -5,7 +5,8 @@ import PropTypes from 'prop-types'
 
 export default class Footer extends Component {
   static propTypes = {
-    todos: PropTypes.object
+    todos: PropTypes.object,
+    deleteCompletedTodos: PropTypes.func.isRequired
   };
 
   static hasCompleted(todos) {
@@ -21,12 +22,13 @@ export default class Footer extends Component {
   }
 
   render() {
-    const {todos} = this.props;
+    const todos = this.props.todos;
+    const deleteCompletedTodos = this.props.deleteCompletedTodos;
 
     return (
       <footer>
         <label>The number of todos not completed: {Footer.countNotCompleted(todos)}</label>
-        { Footer.hasCompleted(todos) && <button>delete completed</button> }
+        {Footer.hasCompleted(todos) && <button onClick={() => deleteCompletedTodos()}>delete completed</button>}
       </footer>
     )
   }

@@ -22,7 +22,8 @@ function setup() {
     actions: {
       editTodo: sinon.spy(),
       deleteTodo: sinon.spy(),
-      toggleCompleteOneTodo: sinon.spy()
+      toggleCompleteOneTodo: sinon.spy(),
+      deleteCompletedTodos: sinon.spy()
     }
   };
 

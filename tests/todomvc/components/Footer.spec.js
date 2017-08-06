@@ -5,12 +5,14 @@ import {List, Map} from 'immutable'
 import uuid from 'uuid'
 import {expect} from 'chai'
 import {shallow} from 'enzyme'
+import sinon from 'sinon'
 
 import Footer from '../../../src/todomvc/components/Footer'
 
 function setup(todos) {
   const props = {
-    todos: todos
+    todos: todos,
+    deleteCompletedTodos: sinon.spy()
   };
 
   const component = shallow(
@@ -18,7 +20,8 @@ function setup(todos) {
   );
 
   return {
-    component: component
+    component: component,
+    props: props
   }
 }
 
@@ -95,6 +98,19 @@ describe('Footer component', () => {
 
       expect(button).to.have.length(1);
       expect(button.children().text()).to.equal('delete completed')
+    });
+
+    it('Should call deleteCompletedTodos() when the delete completed button is clicked', () => {
+      const todos = List([
+        Map({id: uuid.v4(), description: 'todo 1', completed: false}),
+        Map({id: uuid.v4(), description: 'todo 2', completed: true}),
+        Map({id: uuid.v4(), description: 'todo 3', completed: false})
+      ]);
+      const {component, props} = setup(todos);
+      const button = component.find('button');
+
+      button.simulate('click');
+      expect(props.deleteCompletedTodos.called).to.be.true
     })
   })
 });
