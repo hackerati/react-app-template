@@ -12,6 +12,15 @@ export default class MainSection extends Component {
     actions: PropTypes.object.isRequired
   };
 
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      show_all: true,
+      show_completed: false,
+      show_not_completed: false
+    }
+  }
+
   render() {
     const {todos, actions} = this.props;
 
@@ -21,6 +30,18 @@ export default class MainSection extends Component {
           {todos.map(todo => <TodoItem key={todo.get('id')} todo={todo} {...actions} />)}
         </ul>
         <Footer todos={todos}/>
+        <input type="radio"
+               value="show_all"
+               name="complete_status"
+               checked={this.state.show_all}/> show all
+        <input type="radio"
+               value="show_completed"
+               name="complete_status"
+               checked={this.state.show_completed}/> show completed
+        <input type="radio"
+               value="show_not_completed"
+               name="complete_status"
+               checked={this.state.show_not_completed}/> show not completed
       </section>
     )
   }

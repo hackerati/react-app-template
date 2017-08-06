@@ -59,6 +59,18 @@ describe('MainSection component', () => {
       const footer = component.children('Footer');
 
       expect(footer).to.have.length(1);
+    });
+
+    it('Should include a completed radio-button filter', () => {
+      const {component} = setup();
+      const radio_buttons = component.children('input');
+
+      expect(radio_buttons).to.have.length(3);
+      radio_buttons.map(radio_button => expect(radio_button.props().type).to.equal('radio'));
+      radio_buttons.map(radio_button => expect(radio_button.props().name).to.equal('complete_status'));
+      expect(radio_buttons.nodes[0].props.value).to.equal('show_all');
+      expect(radio_buttons.nodes[1].props.value).to.equal('show_completed');
+      expect(radio_buttons.nodes[2].props.value).to.equal('show_not_completed')
     })
   })
 });
