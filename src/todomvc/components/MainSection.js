@@ -21,27 +21,48 @@ export default class MainSection extends Component {
     }
   }
 
+  setVisibility(event) {
+    this.setState({
+      show_all: event.target.value === 'show_all',
+      show_completed: event.target.value === 'show_completed',
+      show_not_completed: event.target.value === 'show_not_completed'
+    });
+  }
+
+  showTodo(status) {
+    if (this.state.show_completed && status) return true;
+    else if (this.state.show_not_completed && !status) return true;
+    else return this.state.show_all;
+  }
+
   render() {
     const {todos, actions} = this.props;
 
     return (
       <section>
         <ul>
-          {todos.map(todo => <TodoItem key={todo.get('id')} todo={todo} {...actions} />)}
+          {todos.map(todo => this.showTodo.bind(this)(todo.get('completed')) &&
+            <TodoItem key={todo.get('id')} todo={todo} {...actions} />)}
         </ul>
         <Footer todos={todos}/>
-        <input type="radio"
+        <input id="id_show_all"
+               type="radio"
                value="show_all"
                name="complete_status"
-               checked={this.state.show_all}/> show all
-        <input type="radio"
+               checked={this.state.show_all}
+               onChange={this.setVisibility.bind(this)}/> show all
+        <input id="id_show_completed"
+               type="radio"
                value="show_completed"
                name="complete_status"
-               checked={this.state.show_completed}/> show completed
-        <input type="radio"
+               checked={this.state.show_completed}
+               onChange={this.setVisibility.bind(this)}/> show completed
+        <input id="id_show_not_completed"
+               type="radio"
                value="show_not_completed"
                name="complete_status"
-               checked={this.state.show_not_completed}/> show not completed
+               checked={this.state.show_not_completed}
+               onChange={this.setVisibility.bind(this)}/> show not completed
       </section>
     )
   }
