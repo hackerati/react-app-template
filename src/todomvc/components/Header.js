@@ -36,7 +36,7 @@ export default class Header extends Component {
         <h1>todos</h1>
         <TodoTextInput placeholder="What needs to be done?" isNew onSave={this.handleSave.bind(this)}/>
         <input type="checkbox" name="all_completed" checked={this.state.all_completed}
-               onChange={ this.handleToggleCompletedAll.bind(this) }/>toggle &quot;completed&quot; status for all Todos (checked = completed)
+               onChange={ this.handleToggleCompletedAll.bind(this) }/>toggle &quot;completed&quot; status for all todos (checked = completed)
       </header>
     )
   }

@@ -43,7 +43,7 @@ describe('TodoItem component', () => {
     });
 
     it('Should have a delete button', () => {
-      const {component, props} = setup();
+      const {component} = setup();
       const button = component.children('button');
 
       expect(button).to.have.length(1);
@@ -51,7 +51,7 @@ describe('TodoItem component', () => {
     });
 
     it('Should have a toggle complete status checkbox', () => {
-      const {component, props} = setup();
+      const {component} = setup();
       const checkbox = component.children('input');
 
       expect(checkbox).to.have.length(1);
@@ -81,7 +81,7 @@ describe('TodoItem component', () => {
     });
 
     it('Should leave edit mode after TodoTextInput onSave', () => {
-      const {component, props} = setup();
+      const {component} = setup();
 
       component.children('label').simulate('doubleclick'); // switch to edit mode
       component.find('TodoTextInput').props().onSave('Use Redux'); // update
@@ -97,7 +97,7 @@ describe('TodoItem component', () => {
       expect(props.deleteTodo.called).to.be.true
     });
 
-    it('Should call deleteTodo() when TodoTextInput onSave is called empty', () => {
+    it('Should call deleteTodo() when TodoTextInput onSave is called with no text', () => {
       const {component, props} = setup();
 
       component.children('label').simulate('doubleclick'); // switch to edit mode

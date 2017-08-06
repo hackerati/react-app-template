@@ -59,7 +59,7 @@ describe('MainSection component', () => {
     });
 
     it('Should include a Footer component', () => {
-      const {component, props} = setup();
+      const {component} = setup();
       const footer = component.children('Footer');
 
       expect(footer).to.have.length(1);

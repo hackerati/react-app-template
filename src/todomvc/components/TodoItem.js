@@ -38,7 +38,7 @@ export default class TodoItem extends Component {
         </label>
         <input type="checkbox" name="completed" checked={todo.get('completed')}
                onChange={ () => toggleCompleteOneTodo(todo.get('id')) }/>completed
-        <button className="destroy" onClick={() => deleteTodo(todo.get('id'))}>delete todo</button>
+        <button onClick={() => deleteTodo(todo.get('id'))}>delete todo</button>
       </li>
     )
   }
@@ -51,7 +51,7 @@ export default class TodoItem extends Component {
         <TodoTextInput text={todo.get('description')} onSave={(text) => this.handleSave(todo.get('id'), text)}/>
         <input type="checkbox" name="completed" checked={todo.get('completed')}
                onChange={ () => toggleCompleteOneTodo(todo.get('id')) }/>completed
-        <button className="destroy" onClick={() => deleteTodo(todo.get('id'))}>delete todo</button>
+        <button onClick={() => deleteTodo(todo.get('id'))}>delete todo</button>
       </li>
     )
   }

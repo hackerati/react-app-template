@@ -36,13 +36,13 @@ describe('TodoApp component', () => {
     });
 
     it('Should have a header', () => {
-      const {component, props} = setup();
+      const {component} = setup();
 
       expect(component.children('Header')).to.have.length(1)
     });
 
     it('Should have a main section', () => {
-      const {component, props} = setup();
+      const {component} = setup();
 
       expect(component.children('MainSection')).to.have.length(1)
     })
