@@ -21,6 +21,7 @@ export default class Footer extends Component {
     return (
       <footer>
         <label>The number of todos not completed: {Footer.countNotCompleted(todos)}</label>
+        <button>delete completed</button>
       </footer>
     )
   }

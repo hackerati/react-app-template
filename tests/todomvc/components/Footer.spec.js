@@ -68,6 +68,14 @@ describe('Footer component', () => {
 
       expect(label.type()).to.equal('label');
       expect(label.text()).to.equal('The number of todos not completed: 5 todos left')
+    });
+
+    it('Should have a delete all completed button', () => {
+      const {component} = setup();
+      const button = component.children('button');
+
+      expect(button).to.have.length(1);
+      expect(button.children().text()).to.equal('delete completed')
     })
   })
 });
