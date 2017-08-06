@@ -45,5 +45,13 @@ describe('TodoMVC actions', () => {
     };
 
     expect(todomvc.actions.toggleCompleteAllTodos()).to.deep.equal(expectedAction)
+  });
+
+  it('Should create an action to delete all completed todos', () => {
+    const expectedAction = {
+      type: todomvc.types.DELETE_COMPLETED
+    };
+
+    expect(todomvc.actions.deleteCompletedTodos()).to.deep.equal(expectedAction)
   })
 });

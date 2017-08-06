@@ -21,3 +21,7 @@ export function toggleCompleteOneTodo(id) {
 export function toggleCompleteAllTodos(all_completed = true) {
   return {type: types.TOGGLE_COMPLETE_ALL, all_completed: all_completed}
 }
+
+export function deleteCompletedTodos() {
+  return {type: types.DELETE_COMPLETED}
+}
