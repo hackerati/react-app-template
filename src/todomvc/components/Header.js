@@ -10,10 +10,24 @@ export default class Header extends Component {
     actions: PropTypes.object.isRequired
   };
 
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      all_completed: false
+    }
+  }
+
   handleSave(text) {
     if (text.length !== 0) {
       this.props.actions.addTodo(text)
     }
+  }
+
+  handleToggleCompletedAll() {
+    const reversed_completed_status = !this.state.all_completed;
+
+    this.setState({all_completed: reversed_completed_status});
+    this.props.actions.toggleCompleteAllTodos(reversed_completed_status)
   }
 
   render() {
@@ -21,7 +35,8 @@ export default class Header extends Component {
       <header>
         <h1>todos</h1>
         <TodoTextInput placeholder="What needs to be done?" isNew onSave={this.handleSave.bind(this)}/>
-        <input type="checkbox" name="all_completed" />toggle &quot;completed&quot; status for all Todos (checked = completed)
+        <input type="checkbox" name="all_completed" checked={this.state.all_completed}
+               onChange={ this.handleToggleCompletedAll.bind(this) }/>toggle &quot;completed&quot; status for all Todos (checked = completed)
       </header>
     )
   }

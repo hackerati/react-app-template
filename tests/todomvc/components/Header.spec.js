@@ -12,6 +12,7 @@ function setup() {
   const props = {
     actions: {
       addTodo: sinon.spy(),
+      toggleCompleteAllTodos: sinon.spy()
     }
   };
 
@@ -69,6 +70,14 @@ describe('Header component', () => {
       expect(props.actions.addTodo.called).to.be.false;
       input.props().onSave('Use Redux');
       expect(props.actions.addTodo.called).to.be.true
+    });
+
+    it('Should call toggleCompleteAllTodos() when the all complete status checkbox is changed', () => {
+      const {component, props} = setup();
+      const input = component.find('input');
+
+      input.simulate('change');
+      expect(props.actions.toggleCompleteAllTodos.called).to.be.true
     })
   })
 });
