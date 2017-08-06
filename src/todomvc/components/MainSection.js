@@ -4,6 +4,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 
 import TodoItem from './TodoItem'
+import Footer from "./Footer";
 
 export default class MainSection extends Component {
   static propTypes = {
@@ -19,6 +20,7 @@ export default class MainSection extends Component {
         <ul>
           {todos.map(todo => <TodoItem key={todo.get('id')} todo={todo} {...actions} />)}
         </ul>
+        <Footer todos={todos}/>
       </section>
     )
   }

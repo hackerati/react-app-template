@@ -52,6 +52,13 @@ describe('MainSection component', () => {
         expect(item.type()).to.equal(TodoItem);
         expect(item.props().todo).to.equal(props.todos.get(i))
       })
+    });
+
+    it('Should include a Footer component', () => {
+      const {component, props} = setup();
+      const footer = component.children('Footer');
+
+      expect(footer).to.have.length(1);
     })
   })
 });
