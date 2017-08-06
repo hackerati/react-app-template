@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react'
+import {List} from 'immutable'
 import {expect} from 'chai'
 import {shallow} from 'enzyme'
 
@@ -34,6 +35,14 @@ describe('Footer component', () => {
 
       expect(label.type()).to.equal('label');
       expect(label.text()).to.equal('The number of todos not completed: ')
+    });
+
+    it('Should display \'No todos left\' when active count is 0', () => {
+      const {component} = setup(List([]));
+      const label = component.children('label');
+
+      expect(label.type()).to.equal('label');
+      expect(label.text()).to.equal('The number of todos not completed: No todos left')
     })
   })
 });
