@@ -48,6 +48,15 @@ describe('Header component', () => {
       expect(input.type()).to.equal(TodoTextInput);
       expect(input.props().placeholder).to.equal('What needs to be done?');
       expect(input.props().isNew).to.equal(true)
+    });
+
+    it('Should have a toggle all complete status checkbox', () => {
+      const {component} = setup();
+      const checkbox = component.children('input');
+
+      expect(checkbox).to.have.length(1);
+      expect(checkbox.props().type).to.equal('checkbox');
+      expect(checkbox.props().name).to.equal('all_completed')
     })
   });
 
