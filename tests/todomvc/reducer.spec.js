@@ -65,5 +65,29 @@ describe('TodoMVC reducer', () => {
     });
 
     expect(new_state.get(0).get('completed')).to.equal(!state.get(0).get('completed'))
+  });
+
+  it('Should handle TOGGLE_COMPLETE_ALL todo', () => {
+    const state = List([
+      Map({id: uuid.v4(), description: 'My todo 1', completed: false}),
+      Map({id: uuid.v4(), description: 'My todo 2', completed: true}),
+      Map({id: uuid.v4(), description: 'My todo 3', completed: false}),
+      Map({id: uuid.v4(), description: 'My todo 4', completed: true}),
+      Map({id: uuid.v4(), description: 'My todo 5', completed: false})
+    ]);
+
+    const new_state_1 = todomvc.reducer(state, {
+      type: todomvc.types.TOGGLE_COMPLETE_ALL, all_completed: true
+    });
+
+    expect(new_state_1.size).to.equal(5);
+    new_state_1.map(todo => expect(todo.get('completed')).to.equal(true));
+
+    const new_state_2 = todomvc.reducer(state, {
+      type: todomvc.types.TOGGLE_COMPLETE_ALL, all_completed: false
+    });
+
+    expect(new_state_2.size).to.equal(5);
+    new_state_2.map(todo => expect(todo.get('completed')).to.equal(false))
   })
 });
