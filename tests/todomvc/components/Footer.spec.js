@@ -1,7 +1,8 @@
 'use strict';
 
 import React from 'react'
-import {List} from 'immutable'
+import {List, Map} from 'immutable'
+import uuid from 'uuid'
 import {expect} from 'chai'
 import {shallow} from 'enzyme'
 
@@ -43,6 +44,15 @@ describe('Footer component', () => {
 
       expect(label.type()).to.equal('label');
       expect(label.text()).to.equal('The number of todos not completed: No todos left')
+    });
+
+    it('Should display \'1 todo left\' when active count is 1', () => {
+      const todos = List([Map({id: uuid.v4(), description: 'todo 1', completed: false})]);
+      const {component} = setup(todos);
+      const label = component.children('label');
+
+      expect(label.type()).to.equal('label');
+      expect(label.text()).to.equal('The number of todos not completed: 1 todo left')
     })
   })
 });

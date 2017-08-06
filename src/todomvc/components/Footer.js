@@ -10,7 +10,8 @@ export default class Footer extends Component {
 
   static countNotCompleted(todos) {
     if (typeof todos === "undefined") return '';
-    else if (todos.filter(todo => todo.get('completed') !== true).count() === 0) return 'No todos left'
+    else if (todos.filter(todo => todo.get('completed') !== true).count() === 0) return 'No todos left';
+    else if (todos.filter(todo => todo.get('completed') !== true).count() === 1) return '1 todo left'
   }
 
   render() {
