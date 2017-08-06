@@ -17,6 +17,8 @@ export default function reducer(state = List([]), action) {
       return (state.map(todo => todo.get('id') === action.id ? todo.set('completed', !todo.get('completed')) : todo));
     case types.TOGGLE_COMPLETE_ALL:
       return state.map(todo => todo.set('completed', action.all_completed));
+    case types.DELETE_COMPLETED:
+      return state.filter(todo => todo.get('completed') === false);
     default:
       // just return the same state
       return (state)
