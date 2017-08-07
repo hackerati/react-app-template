@@ -1,30 +1,27 @@
-'use strict'
+'use strict';
 
-import { createStore, applyMiddleware, compose } from 'redux'
-import { persistState } from 'redux-devtools'
+import {createStore, applyMiddleware, compose} from 'redux'
+import {persistState} from 'redux-devtools'
 import thunk from 'redux-thunk'
 import rootReducer from '../reducers'
 import DevTools from '../containers/DevTools'
-import Reactotron from 'reactotron'
 
-const enhancer = compose (
-  Reactotron.storeEnhancer(),
-  applyMiddleware (thunk),
-  DevTools.instrument (),
-  persistState (
-    window.location.href.match (
+const enhancer = compose(
+  applyMiddleware(thunk),
+  DevTools.instrument(),
+  persistState(
+    window.location.href.match(
       /[?&]debug_session=([^&#]+)\b/
     )
   )
-)
+);
 
-export default function configureStore (initialState) {
-  const store = createStore (rootReducer, initialState, enhancer)
-  Reactotron.addReduxStore(store)
+export default function configureStore(initialState) {
+  const store = createStore(rootReducer, initialState, enhancer);
 
   if (module.hot) {
-    module.hot.accept ('../reducers', () =>
-      store.replaceReducer (require ('../reducers').default)
+    module.hot.accept('../reducers', () =>
+      store.replaceReducer(require('../reducers').default)
     )
   }
 

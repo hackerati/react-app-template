@@ -1,11 +1,12 @@
-'use strict'
+'use strict';
 
-import React, { Component, PropTypes } from 'react'
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 
 class Counter extends Component {
   constructor(props) {
-    super(props)
-    this.incrementAsync = this.incrementAsync.bind(this)
+    super(props);
+    this.incrementAsync = this.incrementAsync.bind(this);
     this.incrementIfOdd = this.incrementIfOdd.bind(this)
   }
 
@@ -20,7 +21,7 @@ class Counter extends Component {
   }
 
   render() {
-    const { value, increment, decrement } = this.props
+    const {value, increment, decrement} = this.props;
     return (
       <p>
         Clicked: {value} times
@@ -49,6 +50,6 @@ Counter.propTypes = {
   value: PropTypes.number.isRequired,
   increment: PropTypes.func.isRequired,
   decrement: PropTypes.func.isRequired
-}
+};
 
 export default Counter

@@ -1,6 +1,7 @@
-'use strict'
+'use strict';
 
 import reducer from './reducer'
-export default { reducer }
+
+export default {reducer}
 export * from './actions'
-export { default as CounterApp } from './components/CounterApp'
+export {default as CounterApp} from './components/CounterApp'

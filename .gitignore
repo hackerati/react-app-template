@@ -5,3 +5,5 @@ dist
 
 # IDEA WebStorm
 .idea/
+
+package-lock.json

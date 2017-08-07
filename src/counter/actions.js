@@ -1,14 +1,14 @@
-'use strict'
+'use strict';
 
-import { INCREMENT_COUNTER, DECREMENT_COUNTER } from './ActionTypes'
+import {INCREMENT_COUNTER, DECREMENT_COUNTER} from './ActionTypes'
 
-export function increment () {
+export function increment() {
   return {
     type: INCREMENT_COUNTER
   }
 }
 
-export function decrement () {
+export function decrement() {
   return {
     type: DECREMENT_COUNTER
   }

@@ -1,7 +1,7 @@
-'use strict'
+'use strict';
 
-var path = require ('path')
-var webpack = require ('webpack')
+let path = require('path');
+let webpack = require('webpack');
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -10,19 +10,19 @@ module.exports = {
     './src/index'
   ],
   output: {
-    path: path.join (__dirname, 'dist'),
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/static/'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin (),
+    new webpack.HotModuleReplacementPlugin(),
   ],
   module: {
     loaders: [{
       test: /\.js$/,
-      loaders: ['babel'],
+      loaders: ['babel-loader'],
       exclude: /node_modules/,
-      include: path.join (__dirname, 'src')
+      include: path.join(__dirname, 'src')
     }]
   }
-}
+};
