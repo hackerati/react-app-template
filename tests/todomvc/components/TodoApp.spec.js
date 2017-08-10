@@ -31,20 +31,24 @@ describe('TodoApp component', () => {
   describe('Should render correctly', () => {
     it('Should be a TodoApp', () => {
       const {component} = setup();
+      expect(component.name()).to.equal('StyleRoot');
 
-      expect(component.name()).to.equal('div')
+      const div = component.find('div');
+      expect(div.length).to.equal(1)
     });
 
     it('Should have a header', () => {
       const {component} = setup();
+      const div = component.find('div');
 
-      expect(component.children('Header')).to.have.length(1)
+      expect(div.children('Header')).to.have.length(1)
     });
 
     it('Should have a main section', () => {
       const {component} = setup();
+      const div = component.find('div');
 
-      expect(component.children('MainSection')).to.have.length(1)
+      expect(div.children('MainSection')).to.have.length(1)
     })
   })
 });
