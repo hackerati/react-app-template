@@ -2,12 +2,20 @@
 
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import Radium from 'radium'
 
 import TodoTextInput from './TodoTextInput'
 
+@Radium
 export default class Header extends Component {
   static propTypes = {
     actions: PropTypes.object.isRequired
+  };
+
+  styles = {
+    header: {
+      height: 110
+    }
   };
 
   constructor(props, context) {
@@ -32,7 +40,7 @@ export default class Header extends Component {
 
   render() {
     return (
-      <header>
+      <header style={this.styles.header}>
         <h1>todos</h1>
         <TodoTextInput placeholder="What needs to be done?" isNew onSave={this.handleSave.bind(this)}/>
         <input type="checkbox" name="all_completed" checked={this.state.all_completed}

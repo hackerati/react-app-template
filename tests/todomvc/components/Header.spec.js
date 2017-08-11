@@ -79,5 +79,13 @@ describe('Header component', () => {
       input.simulate('change');
       expect(props.actions.toggleCompleteAllTodos.called).to.be.true
     })
+  });
+
+  describe('Should be styled correctly', () => {
+    it('Should have header styling applied in accordance with the design specs', () => {
+      const {component} = setup();
+
+      expect(component.find({style: {height: 110}})).to.have.length(1);
+    })
   })
 });
