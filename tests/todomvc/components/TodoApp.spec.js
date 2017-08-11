@@ -13,11 +13,6 @@ function setup() {
     actions: {}
   };
 
-  // Render the wrapped component, passing mocked props, instead of the connected TodoApp
-  // component which expects a store. This is the simplest way I could find to test the
-  // rendering of both header and main section components without throwing either a
-  // missing store error on TodoApp or a missing required prop warning on its child
-  // components.
   const component = shallow(
     <TodoApp.WrappedComponent {...props} />
   );
@@ -49,6 +44,18 @@ describe('TodoApp component', () => {
       const div = component.find('div');
 
       expect(div.children('MainSection')).to.have.length(1)
+    })
+  });
+
+  describe('Should be styled correctly', () => {
+    it('Should have styling applied in accordance with the design specs', () => {
+      const {component} = setup();
+      const div = component.find('div');
+
+      expect(div.find({style: {background: '#fff'}})).to.have.length(1);
+      expect(div.find({style: {margin: '130px 0 40px 0'}})).to.have.length(1);
+      expect(div.find({style: {position: 'relative'}})).to.have.length(1);
+      expect(div.find({style: {boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1)'}})).to.have.length(1);
     })
   })
 });
