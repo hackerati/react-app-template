@@ -41,13 +41,15 @@ describe('MainSection component', () => {
   describe('Should render correctly', () => {
     it('Should be a MainSection component', () => {
       const {component} = setup();
+      expect(component.type()).to.equal('div');
 
-      expect(component.type()).to.equal('section')
+      const mainSection = component.find('section');
+      expect(mainSection.length).to.equal(1)
     });
 
     it('Should include a list of todos', () => {
       const {component, props} = setup();
-      const ul = component.children('ul');
+      const ul = component.find('ul');
       const items = ul.children();
 
       expect(ul).to.have.length(1);
@@ -67,7 +69,7 @@ describe('MainSection component', () => {
 
     it('Should include a completed radio-button filter', () => {
       const {component} = setup();
-      const radio_buttons = component.children('input');
+      const radio_buttons = component.find('input');
 
       expect(radio_buttons).to.have.length(3);
       radio_buttons.map(radio_button => expect(radio_button.props().type).to.equal('radio'));
@@ -81,7 +83,7 @@ describe('MainSection component', () => {
   describe('Should behave correctly', () => {
     it('Should show the filtered list of Todos', () => {
       const {component} = setup();
-      let todos = component.children('ul').children().nodes;
+      let todos = component.find('ul').children().nodes;
       const radio_button_all = component.find('#id_show_all');
       const radio_button_completed = component.find('#id_show_completed');
       const radio_button_not_completed = component.find('#id_show_not_completed');
@@ -98,19 +100,19 @@ describe('MainSection component', () => {
       expect(or_result).to.equal(true);
 
       radio_button_completed.simulate('change', {target: {value: 'show_completed'}});
-      todos = component.children('ul').children().nodes;
+      todos = component.find('ul').children().nodes;
       expect(todos).to.have.length(2);
       todos.map(todo => expect([true]).to.include(todo.props.todo.get('completed')));
 
       radio_button_not_completed.simulate('change', {target: {value: 'show_not_completed'}});
-      todos = component.children('ul').children().nodes;
+      todos = component.find('ul').children().nodes;
       expect(todos).to.have.length(3);
       todos.map(todo => expect([false]).to.include(todo.props.todo.get('completed')));
 
       and_result = true;
       or_result = false;
       radio_button_all.simulate('change', {target: {value: 'show_all'}});
-      todos = component.children('ul').children().nodes;
+      todos = component.find('ul').children().nodes;
       expect(todos).to.have.length(5);
       todos.map(todo => {
         expect([true, false]).to.include(todo.props.todo.get('completed'));

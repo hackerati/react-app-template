@@ -39,31 +39,34 @@ export default class MainSection extends Component {
     const {todos, actions} = this.props;
 
     return (
-      <section>
-        <ul>
-          {todos.map(todo => this.showTodo.bind(this)(todo.get('completed')) &&
-            <TodoItem key={todo.get('id')} todo={todo} {...actions} />)}
-        </ul>
-        <input id="id_show_all"
-               type="radio"
-               value="show_all"
-               name="complete_status"
-               checked={this.state.show_all}
-               onChange={this.setVisibility.bind(this)}/> show all
-        <input id="id_show_completed"
-               type="radio"
-               value="show_completed"
-               name="complete_status"
-               checked={this.state.show_completed}
-               onChange={this.setVisibility.bind(this)}/> show completed
-        <input id="id_show_not_completed"
-               type="radio"
-               value="show_not_completed"
-               name="complete_status"
-               checked={this.state.show_not_completed}
-               onChange={this.setVisibility.bind(this)}/> show not completed
+      <div>
+        <div/>
+        <section>
+          <ul>
+            {todos.map(todo => this.showTodo.bind(this)(todo.get('completed')) &&
+              <TodoItem key={todo.get('id')} todo={todo} {...actions} />)}
+          </ul>
+          <input id="id_show_all"
+                 type="radio"
+                 value="show_all"
+                 name="complete_status"
+                 checked={this.state.show_all}
+                 onChange={this.setVisibility.bind(this)}/> show all
+          <input id="id_show_completed"
+                 type="radio"
+                 value="show_completed"
+                 name="complete_status"
+                 checked={this.state.show_completed}
+                 onChange={this.setVisibility.bind(this)}/> show completed
+          <input id="id_show_not_completed"
+                 type="radio"
+                 value="show_not_completed"
+                 name="complete_status"
+                 checked={this.state.show_not_completed}
+                 onChange={this.setVisibility.bind(this)}/> show not completed
+        </section>
         <Footer todos={todos} deleteCompletedTodos={actions.deleteCompletedTodos}/>
-      </section>
+      </div>
     )
   }
 }
