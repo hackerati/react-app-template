@@ -78,5 +78,23 @@ describe('TodoTextInput component', () => {
       component.find('input').at(0).simulate('blur', {target: {value: 'new todo'}});
       expect(props.onSave.called).to.be.false;
     })
+  });
+
+  describe('Should be styled correctly', () => {
+    it('Should have new todo styling applied in accordance with the design specs', () => {
+      const {component} = setup({isNew: true});
+      let newTodo = component.find('input');
+
+      expect(newTodo.find({style: {border: 'none'}})).to.have.length(1);
+      expect(newTodo.find({style: {boxShadow: 'inset 0 -2px 1px rgba(0,0,0,0.03)'}})).to.have.length(1);
+      expect(newTodo.find({style: {color: 'inherit'}})).to.have.length(1);
+      expect(newTodo.find({style: {display: 'block'}})).to.have.length(1);
+      expect(newTodo.find({style: {fontSize: 24}})).to.have.length(1);
+      expect(newTodo.find({style: {lineHeight: '1.4em'}})).to.have.length(1);
+      expect(newTodo.find({style: {padding: '16px 16px 16px 60px'}})).to.have.length(1);
+      expect(newTodo.find({style: {width: '100%'}})).to.have.length(1);
+      expect(newTodo.find({style: {WebkitFontSmoothing: 'antialiased'}})).to.have.length(1);
+      expect(newTodo.find({style: {MozOsxFontSmoothing: 'grayscale'}})).to.have.length(1);
+    })
   })
 });

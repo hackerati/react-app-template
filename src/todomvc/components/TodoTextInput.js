@@ -2,13 +2,30 @@
 
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import Radium from 'radium'
 
+@Radium
 export default class TodoTextInput extends Component {
   static propTypes = {
     text: PropTypes.string,
     placeholder: PropTypes.string,
     onSave: PropTypes.func.isRequired,
     isNew: PropTypes.bool
+  };
+
+  styles = {
+    newTodo: {
+      border: 'none',
+      boxShadow: 'inset 0 -2px 1px rgba(0,0,0,0.03)',
+      color: 'inherit',
+      display: 'block',
+      fontSize: 24,
+      lineHeight: '1.4em',
+      padding: '16px 16px 16px 60px',
+      width: '100%',
+      WebkitFontSmoothing: 'antialiased',
+      MozOsxFontSmoothing: 'grayscale'
+    }
   };
 
   constructor(props, context) {
@@ -42,7 +59,7 @@ export default class TodoTextInput extends Component {
     return (
       <input type="text" placeholder={this.props.placeholder} value={this.state.text}
              onChange={this.handleChange.bind(this)} onKeyDown={this.handleSubmit.bind(this)}
-             onBlur={this.handleBlur.bind(this)}/>
+             onBlur={this.handleBlur.bind(this)} style={this.props.isNew && this.styles.newTodo}/>
     )
   }
 }
