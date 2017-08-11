@@ -122,5 +122,20 @@ describe('MainSection component', () => {
       expect(and_result).to.equal(false);
       expect(or_result).to.equal(true)
     })
+  });
+
+  describe('Should be styled correctly', () => {
+    it('Should have styling decoration applied in accordance with the design specs', () => {
+      const {component} = setup();
+      const div = component.find('div');
+
+      expect(div.find({style: {position: 'absolute'}})).to.have.length(1);
+      expect(div.find({style: {right: 0}})).to.have.length(1);
+      expect(div.find({style: {bottom: 0}})).to.have.length(1);
+      expect(div.find({style: {left: 0}})).to.have.length(1);
+      expect(div.find({style: {height: 50}})).to.have.length(1);
+      expect(div.find({style: {overflow: 'hidden'}})).to.have.length(1);
+      expect(div.find({style: {boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2)'}})).to.have.length(1);
+    })
   })
 });

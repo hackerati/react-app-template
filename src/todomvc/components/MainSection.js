@@ -2,14 +2,28 @@
 
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import Radium from 'radium'
 
 import TodoItem from './TodoItem'
 import Footer from "./Footer";
 
+@Radium
 export default class MainSection extends Component {
   static propTypes = {
     todos: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired
+  };
+
+  styles = {
+    mainSectionDecoration: {
+      position: 'absolute',
+      right: 0,
+      bottom: 0,
+      left: 0,
+      height: 50,
+      overflow: 'hidden',
+      boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2)'
+    }
   };
 
   constructor(props, context) {
@@ -40,7 +54,7 @@ export default class MainSection extends Component {
 
     return (
       <div>
-        <div/>
+        <div style={this.styles.mainSectionDecoration}/>
         <section>
           <ul>
             {todos.map(todo => this.showTodo.bind(this)(todo.get('completed')) &&
