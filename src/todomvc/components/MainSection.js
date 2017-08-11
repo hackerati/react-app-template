@@ -30,6 +30,12 @@ export default class MainSection extends Component {
       width: '98%',
       margin: '0 auto',
       paddingBottom: 10
+    },
+
+    todoList: {
+      margin: '0 0 10 0',
+      padding: 0,
+      listStyle: 'none'
     }
   };
 
@@ -63,7 +69,7 @@ export default class MainSection extends Component {
       <div>
         <div style={this.styles.mainSectionDecoration}/>
         <section style={this.styles.mainSection}>
-          <ul>
+          <ul style={this.styles.todoList}>
             {todos.map(todo => this.showTodo.bind(this)(todo.get('completed')) &&
               <TodoItem key={todo.get('id')} todo={todo} {...actions} />)}
           </ul>

@@ -146,6 +146,15 @@ describe('MainSection component', () => {
       expect(mainSection.find({style: {width: '98%'}})).to.have.length(1);
       expect(mainSection.find({style: {margin: '0 auto'}})).to.have.length(1);
       expect(mainSection.find({style: {paddingBottom: 10}})).to.have.length(1);
+    });
+
+    it('Should have ul styling applied in accordance with the design specs', () => {
+      const {component} = setup();
+      const mainSection = component.find('ul');
+
+      expect(mainSection.find({style: {margin: '0 0 10 0'}})).to.have.length(1);
+      expect(mainSection.find({style: {padding: 0}})).to.have.length(1);
+      expect(mainSection.find({style: {listStyle: 'none'}})).to.have.length(1);
     })
   })
 });
