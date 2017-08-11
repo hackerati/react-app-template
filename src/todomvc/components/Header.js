@@ -70,7 +70,8 @@ export default class Header extends Component {
                name="all_completed"
                checked={this.state.all_completed}
                style={this.styles.toggleAll}
-               onChange={ this.handleToggleCompletedAll.bind(this) }/>toggle &quot;completed&quot; status for all todos (checked = completed)
+               onChange={ this.handleToggleCompletedAll.bind(this) }/>
+        <span>toggle &quot;completed&quot; status for all todos (checked = completed)</span>
       </header>
     )
   }

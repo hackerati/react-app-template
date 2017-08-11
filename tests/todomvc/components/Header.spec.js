@@ -58,6 +58,13 @@ describe('Header component', () => {
       expect(checkbox).to.have.length(1);
       expect(checkbox.props().type).to.equal('checkbox');
       expect(checkbox.props().name).to.equal('all_completed')
+    });
+
+    it('Should have a toggle all complete status span', () => {
+      const {component} = setup();
+      const span = component.children('span');
+
+      expect(span).to.have.length(1);
     })
   });
 
