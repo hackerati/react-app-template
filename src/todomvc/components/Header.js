@@ -15,6 +15,19 @@ export default class Header extends Component {
   styles = {
     header: {
       height: 110
+    },
+
+    h1: {
+      position: 'absolute',
+      top: -140,
+      width: '100%',
+      fontSize: 100,
+      fontWeight: 100,
+      textAlign: 'center',
+      color: 'rgba(175, 47, 47, 0.15)',
+      WebkitTextRendering: 'optimizeLegibility',
+      MozTextRendering: 'optimizeLegibility',
+      textRendering: 'optimizeLegibility',
     }
   };
 
@@ -41,7 +54,7 @@ export default class Header extends Component {
   render() {
     return (
       <header style={this.styles.header}>
-        <h1>todos</h1>
+        <h1 style={this.styles.h1}>todos</h1>
         <TodoTextInput placeholder="What needs to be done?" isNew onSave={this.handleSave.bind(this)}/>
         <input type="checkbox" name="all_completed" checked={this.state.all_completed}
                onChange={ this.handleToggleCompletedAll.bind(this) }/>toggle &quot;completed&quot; status for all todos (checked = completed)

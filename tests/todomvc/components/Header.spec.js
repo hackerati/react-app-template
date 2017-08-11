@@ -86,6 +86,22 @@ describe('Header component', () => {
       const {component} = setup();
 
       expect(component.find({style: {height: 110}})).to.have.length(1);
+    });
+
+    it('Should have h1 styling applied in accordance with the design specs', () => {
+      const {component} = setup();
+      const h1 = component.children('h1');
+
+      expect(h1.find({style: {position: 'absolute'}})).to.have.length(1);
+      expect(h1.find({style: {top: -140}})).to.have.length(1);
+      expect(h1.find({style: {width: '100%'}})).to.have.length(1);
+      expect(h1.find({style: {fontSize: 100}})).to.have.length(1);
+      expect(h1.find({style: {fontWeight: 100}})).to.have.length(1);
+      expect(h1.find({style: {textAlign: 'center'}})).to.have.length(1);
+      expect(h1.find({style: {color: 'rgba(175, 47, 47, 0.15)'}})).to.have.length(1);
+      expect(h1.find({style: {WebkitTextRendering: 'optimizeLegibility'}})).to.have.length(1);
+      expect(h1.find({style: {MozTextRendering: 'optimizeLegibility'}})).to.have.length(1);
+      expect(h1.find({style: {textRendering: 'optimizeLegibility'}})).to.have.length(1);
     })
   })
 });
