@@ -102,6 +102,19 @@ describe('Header component', () => {
       expect(h1.find({style: {WebkitTextRendering: 'optimizeLegibility'}})).to.have.length(1);
       expect(h1.find({style: {MozTextRendering: 'optimizeLegibility'}})).to.have.length(1);
       expect(h1.find({style: {textRendering: 'optimizeLegibility'}})).to.have.length(1);
+    });
+
+    it('Should have checkbox styling applied in accordance with the design specs', () => {
+      const {component} = setup();
+      const checkbox = component.children('input');
+
+      expect(checkbox.find({style: {position: 'relative'}})).to.have.length(1);
+      expect(checkbox.find({style: {top: 10}})).to.have.length(1);
+      expect(checkbox.find({style: {width: 14}})).to.have.length(1);
+      expect(checkbox.find({style: {height: 14}})).to.have.length(1);
+      expect(checkbox.find({style: {margin: '8 8 8 20'}})).to.have.length(1);
+      expect(checkbox.find({style: {verticalAlign: 'middle'}})).to.have.length(1);
+      expect(checkbox.find({style: {cursor: 'pointer'}})).to.have.length(1);
     })
   })
 });
