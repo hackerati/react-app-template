@@ -25,6 +25,20 @@ export default class TodoTextInput extends Component {
       width: '100%',
       WebkitFontSmoothing: 'antialiased',
       MozOsxFontSmoothing: 'grayscale'
+    },
+
+    editTodo: {
+      border: '1px solid #999',
+      boxShadow: 'inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2)',
+      color: 'inherit',
+      display: 'block',
+      fontSize: 24,
+      lineHeight: '1.4em',
+      marginLeft: 40,
+      padding: '12px 16px',
+      width: 500,
+      WebkitFontSmoothing: 'antialiased',
+      MozOsxFontSmoothing: 'grayscale'
     }
   };
 
@@ -59,7 +73,7 @@ export default class TodoTextInput extends Component {
     return (
       <input type="text" placeholder={this.props.placeholder} value={this.state.text}
              onChange={this.handleChange.bind(this)} onKeyDown={this.handleSubmit.bind(this)}
-             onBlur={this.handleBlur.bind(this)} style={this.props.isNew && this.styles.newTodo}/>
+             onBlur={this.handleBlur.bind(this)} style={this.props.isNew ? this.styles.newTodo : this.styles.editTodo}/>
     )
   }
 }

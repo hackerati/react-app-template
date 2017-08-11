@@ -95,6 +95,23 @@ describe('TodoTextInput component', () => {
       expect(newTodo.find({style: {width: '100%'}})).to.have.length(1);
       expect(newTodo.find({style: {WebkitFontSmoothing: 'antialiased'}})).to.have.length(1);
       expect(newTodo.find({style: {MozOsxFontSmoothing: 'grayscale'}})).to.have.length(1);
+    });
+
+    it('Should have edit todo styling applied in accordance with the design specs', () => {
+      const {component} = setup();
+      let editTodo = component.find('input');
+
+      expect(editTodo.find({style: {border: '1px solid #999'}})).to.have.length(1);
+      expect(editTodo.find({style: {boxShadow: 'inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2)'}})).to.have.length(1);
+      expect(editTodo.find({style: {color: 'inherit'}})).to.have.length(1);
+      expect(editTodo.find({style: {display: 'block'}})).to.have.length(1);
+      expect(editTodo.find({style: {fontSize: 24}})).to.have.length(1);
+      expect(editTodo.find({style: {lineHeight: '1.4em'}})).to.have.length(1);
+      expect(editTodo.find({style: {marginLeft: 40}})).to.have.length(1);
+      expect(editTodo.find({style: {padding: '12px 16px'}})).to.have.length(1);
+      expect(editTodo.find({style: {width: 500}})).to.have.length(1);
+      expect(editTodo.find({style: {WebkitFontSmoothing: 'antialiased'}})).to.have.length(1);
+      expect(editTodo.find({style: {MozOsxFontSmoothing: 'grayscale'}})).to.have.length(1);
     })
   })
 });
