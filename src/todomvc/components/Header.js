@@ -38,6 +38,11 @@ export default class Header extends Component {
       margin: '8 8 8 20',
       verticalAlign: 'middle',
       cursor: 'pointer'
+    },
+
+    span: {
+      position: 'relative',
+      top: 10
     }
   };
 
@@ -70,8 +75,8 @@ export default class Header extends Component {
                name="all_completed"
                checked={this.state.all_completed}
                style={this.styles.toggleAll}
-               onChange={ this.handleToggleCompletedAll.bind(this) }/>
-        <span>toggle &quot;completed&quot; status for all todos (checked = completed)</span>
+               onChange={this.handleToggleCompletedAll.bind(this)}/>
+        <span style={this.styles.span}>toggle &quot;completed&quot; status for all todos (checked = completed)</span>
       </header>
     )
   }
