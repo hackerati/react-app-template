@@ -155,6 +155,14 @@ describe('MainSection component', () => {
       expect(mainSection.find({style: {margin: '0 0 10 0'}})).to.have.length(1);
       expect(mainSection.find({style: {padding: 0}})).to.have.length(1);
       expect(mainSection.find({style: {listStyle: 'none'}})).to.have.length(1);
+    });
+
+    it('Should have radiobuttons styling applied in accordance with the design specs', () => {
+      const {component} = setup();
+      const mainSection = component.find('input');
+
+      expect(mainSection.find({style: {marginLeft: 30}})).to.have.length(3);
+      expect(mainSection.find({style: {verticalAlign: 'top'}})).to.have.length(3);
     })
   })
 });

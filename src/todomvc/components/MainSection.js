@@ -32,10 +32,15 @@ export default class MainSection extends Component {
       paddingBottom: 10
     },
 
-    todoList: {
+    todosList: {
       margin: '0 0 10 0',
       padding: 0,
       listStyle: 'none'
+    },
+
+    radioButton: {
+      marginLeft: 30,
+      verticalAlign: 'top'
     }
   };
 
@@ -69,7 +74,7 @@ export default class MainSection extends Component {
       <div>
         <div style={this.styles.mainSectionDecoration}/>
         <section style={this.styles.mainSection}>
-          <ul style={this.styles.todoList}>
+          <ul style={this.styles.todosList}>
             {todos.map(todo => this.showTodo.bind(this)(todo.get('completed')) &&
               <TodoItem key={todo.get('id')} todo={todo} {...actions} />)}
           </ul>
@@ -78,18 +83,21 @@ export default class MainSection extends Component {
                  value="show_all"
                  name="complete_status"
                  checked={this.state.show_all}
+                 style={this.styles.radioButton}
                  onChange={this.setVisibility.bind(this)}/> show all
           <input id="id_show_completed"
                  type="radio"
                  value="show_completed"
                  name="complete_status"
                  checked={this.state.show_completed}
+                 style={this.styles.radioButton}
                  onChange={this.setVisibility.bind(this)}/> show completed
           <input id="id_show_not_completed"
                  type="radio"
                  value="show_not_completed"
                  name="complete_status"
                  checked={this.state.show_not_completed}
+                 style={this.styles.radioButton}
                  onChange={this.setVisibility.bind(this)}/> show not completed
         </section>
         <Footer todos={todos} deleteCompletedTodos={actions.deleteCompletedTodos}/>
