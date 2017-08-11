@@ -136,6 +136,16 @@ describe('MainSection component', () => {
       expect(div.find({style: {height: 50}})).to.have.length(1);
       expect(div.find({style: {overflow: 'hidden'}})).to.have.length(1);
       expect(div.find({style: {boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2)'}})).to.have.length(1);
+    });
+
+    it('Should have section styling applied in accordance with the design specs', () => {
+      const {component} = setup();
+      const mainSection = component.find('section');
+
+      expect(mainSection.find({style: {borderTop: '1px solid #e6e6e6'}})).to.have.length(1);
+      expect(mainSection.find({style: {width: '98%'}})).to.have.length(1);
+      expect(mainSection.find({style: {margin: '0 auto'}})).to.have.length(1);
+      expect(mainSection.find({style: {paddingBottom: 10}})).to.have.length(1);
     })
   })
 });

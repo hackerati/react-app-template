@@ -23,6 +23,13 @@ export default class MainSection extends Component {
       height: 50,
       overflow: 'hidden',
       boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2)'
+    },
+
+    mainSection: {
+      borderTop: '1px solid #e6e6e6',
+      width: '98%',
+      margin: '0 auto',
+      paddingBottom: 10
     }
   };
 
@@ -55,7 +62,7 @@ export default class MainSection extends Component {
     return (
       <div>
         <div style={this.styles.mainSectionDecoration}/>
-        <section>
+        <section style={this.styles.mainSection}>
           <ul>
             {todos.map(todo => this.showTodo.bind(this)(todo.get('completed')) &&
               <TodoItem key={todo.get('id')} todo={todo} {...actions} />)}
