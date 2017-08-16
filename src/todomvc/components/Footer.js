@@ -38,7 +38,9 @@ export default class Footer extends Component {
 
     return (
       <footer style={this.styles.footer}>
-        <label>The number of todos not completed: {Footer.countNotCompleted(todos)}</label>
+        <label>
+          The number of todos not completed: <strong>{Footer.countNotCompleted(todos)}</strong>
+        </label>
         {Footer.hasCompleted(todos) && <button onClick={() => deleteCompletedTodos()}>delete completed</button>}
       </footer>
     )

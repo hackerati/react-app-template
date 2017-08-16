@@ -122,6 +122,19 @@ describe('Footer component', () => {
       expect(component.find({style: {padding: '10px 15px'}})).to.have.length(1);
       expect(component.find({style: {height: 20}})).to.have.length(1);
       expect(component.find({style: {borderTop: '1px solid #e6e6e6'}})).to.have.length(1);
+    });
+
+    it('Should have number of not completed todos in bold', () => {
+      const todos = List([
+        Map({id: uuid.v4(), description: 'todo 1', completed: false}),
+        Map({id: uuid.v4(), description: 'todo 2', completed: true}),
+        Map({id: uuid.v4(), description: 'todo 3', completed: false})
+      ]);
+      const {component} = setup(todos);
+      const strong = component.find('strong');
+
+      expect(strong).to.have.length(1);
+      expect(strong.children().text()).to.equal('2 todos left')
     })
   })
 });
