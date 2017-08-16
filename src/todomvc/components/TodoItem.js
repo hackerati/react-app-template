@@ -2,6 +2,7 @@
 
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+
 import TodoTextInput from './TodoTextInput'
 
 export default class TodoItem extends Component {
@@ -28,30 +29,48 @@ export default class TodoItem extends Component {
     this.setState({editing: false})
   }
 
+  renderButtonUnchecked() {
+    const {todo, toggleCompleteOneTodo} = this.props;
+
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"
+           onClick={() => toggleCompleteOneTodo(todo.get('id'))}>
+        <circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" strokeWidth="3"/>
+      </svg>
+    )
+  }
+
+  renderButtonChecked() {
+    const {todo, toggleCompleteOneTodo} = this.props;
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"
+           onClick={() => toggleCompleteOneTodo(todo.get('id'))}>
+        <circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" strokeWidth="3"/>
+        <path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/>
+      </svg>
+    )
+  }
+
   renderTodoListItem() {
-    const {todo, deleteTodo, toggleCompleteOneTodo} = this.props;
+    const {todo, deleteTodo} = this.props;
 
     return (
       <li>
+        {todo.get('completed') ? this.renderButtonChecked() : this.renderButtonUnchecked()}
         <label onDoubleClick={this.handleDoubleClick.bind(this)}>
           {todo.get('description')}
         </label>
-        <input type="checkbox" name="completed" checked={todo.get('completed')}
-               onChange={ () => toggleCompleteOneTodo(todo.get('id')) }/>completed
-        <button onClick={() => deleteTodo(todo.get('id'))}>delete todo</button>
+        <div onClick={() => deleteTodo(todo.get('id'))}>x</div>
       </li>
     )
   }
 
   renderTodoTextInput() {
-    const {todo, deleteTodo, toggleCompleteOneTodo} = this.props;
+    const {todo} = this.props;
 
     return (
       <li>
         <TodoTextInput text={todo.get('description')} onSave={(text) => this.handleSave(todo.get('id'), text)}/>
-        <input type="checkbox" name="completed" checked={todo.get('completed')}
-               onChange={ () => toggleCompleteOneTodo(todo.get('id')) }/>completed
-        <button onClick={() => deleteTodo(todo.get('id'))}>delete todo</button>
       </li>
     )
   }

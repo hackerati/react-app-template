@@ -44,19 +44,17 @@ describe('TodoItem component', () => {
 
     it('Should have a delete button', () => {
       const {component} = setup();
-      const button = component.children('button');
+      const div = component.children('div');
 
-      expect(button).to.have.length(1);
-      expect(button.children().text()).to.equal('delete todo')
+      expect(div).to.have.length(1);
+      expect(div.children().text()).to.equal('x')
     });
 
     it('Should have a toggle complete status checkbox', () => {
       const {component} = setup();
-      const checkbox = component.children('input');
+      const svg = component.children('svg');
 
-      expect(checkbox).to.have.length(1);
-      expect(checkbox.props().type).to.equal('checkbox');
-      expect(checkbox.props().name).to.equal('completed')
+      expect(svg).to.have.length(1);
     })
   });
 
@@ -91,9 +89,9 @@ describe('TodoItem component', () => {
 
     it('Should call deleteTodo() when the delete button is clicked', () => {
       const {component, props} = setup();
-      const button = component.find('button');
+      const div = component.find('div');
 
-      button.simulate('click');
+      div.simulate('click');
       expect(props.deleteTodo.called).to.be.true
     });
 
@@ -107,9 +105,9 @@ describe('TodoItem component', () => {
 
     it('Should call toggleCompleteOneTodo() when the complete status checkbox is changed', () => {
       const {component, props} = setup();
-      const input = component.find('input');
+      const svg = component.find('svg');
 
-      input.simulate('change');
+      svg.simulate('click');
       expect(props.toggleCompleteOneTodo.called).to.be.true
     })
   })
