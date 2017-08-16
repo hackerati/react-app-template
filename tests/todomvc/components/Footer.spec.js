@@ -135,6 +135,29 @@ describe('Footer component', () => {
 
       expect(strong).to.have.length(1);
       expect(strong.children().text()).to.equal('2 todos left')
+    });
+
+    it('Should have delete button styling applied in accordance with the design specs', () => {
+      const todos = List([
+        Map({id: uuid.v4(), description: 'todo 1', completed: false}),
+        Map({id: uuid.v4(), description: 'todo 2', completed: true}),
+        Map({id: uuid.v4(), description: 'todo 3', completed: false})
+      ]);
+      const {component} = setup(todos);
+      const button = component.find('button');
+
+      expect(button.find({style: {float: 'right'}})).to.have.length(1);
+      expect(button.find({style: {position: 'relative'}})).to.have.length(1);
+      expect(button.find({style: {marginTop: 2}})).to.have.length(1);
+      expect(button.find({style: {textDecoration: 'none'}})).to.have.length(1);
+      expect(button.find({style: {border: 0}})).to.have.length(1);
+      expect(button.find({style: {background: 'none'}})).to.have.length(1);
+      expect(button.find({style: {fontSize: '100%'}})).to.have.length(1);
+      expect(button.find({style: {color: 'rgba(175, 47, 47, 0.75)'}})).to.have.length(1);
+      expect(button.find({style: {cursor: 'pointer'}})).to.have.length(1);
+      expect(button.find({style: {WebkitAppearance: 'none'}})).to.have.length(1);
+      expect(button.find({style: {WebkitFontSmoothing: 'antialiased'}})).to.have.length(1);
+      expect(button.find({style: {MozOsxFontSmoothing: 'grayscale'}})).to.have.length(1);
     })
   })
 });

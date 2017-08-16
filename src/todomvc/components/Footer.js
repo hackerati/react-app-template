@@ -17,6 +17,21 @@ export default class Footer extends Component {
       padding: '10px 15px',
       height: 20,
       borderTop: '1px solid #e6e6e6'
+    },
+
+    deleteCompleted: {
+      position: 'relative',
+      float: 'right',
+      marginTop: 2,
+      border: 0,
+      color: 'rgba(175, 47, 47, 0.75)',
+      background: 'none',
+      textDecoration: 'none',
+      fontSize: '100%',
+      cursor: 'pointer',
+      WebkitAppearance: 'none',
+      WebkitFontSmoothing: 'antialiased',
+      MozOsxFontSmoothing: 'grayscale'
     }
   };
 
@@ -41,7 +56,8 @@ export default class Footer extends Component {
         <label>
           The number of todos not completed: <strong>{Footer.countNotCompleted(todos)}</strong>
         </label>
-        {Footer.hasCompleted(todos) && <button onClick={() => deleteCompletedTodos()}>delete completed</button>}
+        {Footer.hasCompleted(todos) &&
+        <button style={this.styles.deleteCompleted} onClick={() => deleteCompletedTodos()}>delete completed</button>}
       </footer>
     )
   }
