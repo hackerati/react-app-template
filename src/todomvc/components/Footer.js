@@ -31,7 +31,12 @@ export default class Footer extends Component {
       cursor: 'pointer',
       WebkitAppearance: 'none',
       WebkitFontSmoothing: 'antialiased',
-      MozOsxFontSmoothing: 'grayscale'
+      MozOsxFontSmoothing: 'grayscale',
+      ':hover': {
+        fontStyle: 'italic',
+        fontWeight: 'bold',
+        color: 'indianred'
+      },
     }
   };
 

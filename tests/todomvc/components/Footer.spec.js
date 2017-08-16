@@ -158,6 +158,32 @@ describe('Footer component', () => {
       expect(button.find({style: {WebkitAppearance: 'none'}})).to.have.length(1);
       expect(button.find({style: {WebkitFontSmoothing: 'antialiased'}})).to.have.length(1);
       expect(button.find({style: {MozOsxFontSmoothing: 'grayscale'}})).to.have.length(1);
+    });
+
+    it('Should have delete button hover styling applied in accordance with the design specs', () => {
+      const todos = List([
+        Map({id: uuid.v4(), description: 'todo 1', completed: false}),
+        Map({id: uuid.v4(), description: 'todo 2', completed: true}),
+        Map({id: uuid.v4(), description: 'todo 3', completed: false})
+      ]);
+      const {component} = setup(todos);
+      let button = component.find('button');
+
+      expect(button.find({style: {fontStyle: 'italic'}})).to.have.length(0);
+      expect(button.find({style: {fontWeight: 'bold'}})).to.have.length(0);
+      expect(button.find({style: {color: 'indianred'}})).to.have.length(0);
+
+      button.simulate('mouseenter');
+      button = component.find('button');
+      expect(button.find({style: {fontStyle: 'italic'}})).to.have.length(1);
+      expect(button.find({style: {fontWeight: 'bold'}})).to.have.length(1);
+      expect(button.find({style: {color: 'indianred'}})).to.have.length(1);
+
+      button.simulate('mouseleave');
+      button = component.find('button');
+      expect(button.find({style: {fontStyle: 'italic'}})).to.have.length(0);
+      expect(button.find({style: {fontWeight: 'bold'}})).to.have.length(0);
+      expect(button.find({style: {color: 'indianred'}})).to.have.length(0);
     })
   })
 });
