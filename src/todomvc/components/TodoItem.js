@@ -16,6 +16,18 @@ export default class TodoItem extends Component {
     isLast: PropTypes.bool
   };
 
+  styles = {
+    toggle: {
+      top: 0,
+      bottom: 0,
+      height: 'auto',
+      width: 40,
+      textAlign: 'center',
+      position: 'absolute',
+      margin: 'auto 0'
+    }
+  };
+
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -47,7 +59,7 @@ export default class TodoItem extends Component {
     const {todo, toggleCompleteOneTodo} = this.props;
     return (
       <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"
-           onClick={() => toggleCompleteOneTodo(todo.get('id'))}>
+           onClick={() => toggleCompleteOneTodo(todo.get('id'))} style={this.styles.toggle}>
         <circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" strokeWidth="3"/>
         <path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/>
       </svg>

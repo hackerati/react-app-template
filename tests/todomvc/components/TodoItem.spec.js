@@ -10,13 +10,14 @@ import sinon from 'sinon'
 import MainSection from '../../../src/todomvc/components/MainSection'
 import TodoItem from '../../../src/todomvc/components/TodoItem'
 
-function setup() {
-  const props = {
-    todo: Map({id: uuid.v4(), description: 'Use Redux', completed: false}),
-    editTodo: sinon.spy(),
-    deleteTodo: sinon.spy(),
-    toggleCompleteOneTodo: sinon.spy()
-  };
+const defaultProps = {
+  todo: Map({id: uuid.v4(), description: 'Use Redux', completed: false}),
+  editTodo: sinon.spy(),
+  deleteTodo: sinon.spy(),
+  toggleCompleteOneTodo: sinon.spy()
+};
+
+function setup(props=defaultProps) {
   const component = shallow(
     <TodoItem {...props} />
   );
@@ -142,6 +143,26 @@ describe('TodoItem component', () => {
       expect(items.find({style: {fontSize: 20}})).to.have.length(3);
       expect(items.find({style: {borderBottom: '1px solid #ededed'}})).to.have.length(2);
       expect(items.find({style: {borderBottom: 'none'}})).to.have.length(1);
+    });
+
+    it('Should have ButtonChecked styling applied in accordance with the design specs', () => {
+      const completedProps = {
+        todo: Map({id: uuid.v4(), description: 'Use Redux', completed: true}),
+        editTodo: sinon.spy(),
+        deleteTodo: sinon.spy(),
+        toggleCompleteOneTodo: sinon.spy()
+      };
+
+      const {component} = setup(completedProps);
+      const checkbox = component.children('svg');
+
+      expect(checkbox.find({style: {top: 0}})).to.have.length(1);
+      expect(checkbox.find({style: {bottom: 0}})).to.have.length(1);
+      expect(checkbox.find({style: {height: 'auto'}})).to.have.length(1);
+      expect(checkbox.find({style: {width: 40}})).to.have.length(1);
+      expect(checkbox.find({style: {textAlign: 'center'}})).to.have.length(1);
+      expect(checkbox.find({style: {position: 'absolute'}})).to.have.length(1);
+      expect(checkbox.find({style: {margin: 'auto 0'}})).to.have.length(1);
     })
   })
 });
