@@ -82,6 +82,15 @@ export default class TodoItem extends Component {
     this.setState({editing: false})
   }
 
+  handleVisibilityOff() {
+    this.styles.deleteButton.display = 'none';
+  }
+
+  handleVisibilityOn() {
+    this.styles.deleteButton.display = 'initial';
+  }
+
+
   renderButtonUnchecked() {
     const {todo, toggleCompleteOneTodo} = this.props;
 
@@ -108,10 +117,12 @@ export default class TodoItem extends Component {
     const {todo, deleteTodo, isLast} = this.props;
 
     return (
-      <li key={todo.get('id')}  style={{position: 'relative',
-                                        fontSize: 20,
-                                        borderBottom: isLast ? 'none' : '1px solid #ededed',
-                                        ':hover': {}}}>
+      <li key={todo.get('id')}
+          style={{position: 'relative',
+                  fontSize: 20,
+                  borderBottom: isLast ? 'none' : '1px solid #ededed',
+                  ':hover': {}}}
+          onMouseEnter={this.handleVisibilityOn.bind(this)} onMouseLeave={this.handleVisibilityOff.bind(this)}>
         {todo.get('completed') ? this.renderButtonChecked() : this.renderButtonUnchecked()}
         <label onDoubleClick={this.handleDoubleClick.bind(this)}
                style={todo.get('completed') ? this.styles.todoLabelCompleted : this.styles.todoLabel}>

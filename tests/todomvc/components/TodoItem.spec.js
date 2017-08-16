@@ -138,6 +138,29 @@ describe('TodoItem component', () => {
 
       svg.simulate('click');
       expect(props.toggleCompleteOneTodo.called).to.be.true
+    });
+
+    it('Should display delete div only when hovering over a todo', () => {
+      const {component} = setup();
+      let div = component.children('div');
+
+      expect(div.find({style: {display: 'none'}})).to.have.length(1);
+      expect(div.find({style: {display: 'initial'}})).to.have.length(0);
+
+      component.simulate('mouseenter');
+      div = component.children('div');
+      expect(div.find({style: {display: 'none'}})).to.have.length(0);
+      expect(div.find({style: {display: 'initial'}})).to.have.length(1);
+
+      component.simulate('mouseleave');
+      div = component.children('div');
+      expect(div.find({style: {display: 'none'}})).to.have.length(1);
+      expect(div.find({style: {display: 'initial'}})).to.have.length(0);
+
+      component.simulate('mouseenter');
+      div = component.children('div');
+      expect(div.find({style: {display: 'none'}})).to.have.length(0);
+      expect(div.find({style: {display: 'initial'}})).to.have.length(1);
     })
   });
 
