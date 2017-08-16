@@ -112,5 +112,16 @@ describe('Footer component', () => {
       button.simulate('click');
       expect(props.deleteCompletedTodos.called).to.be.true
     })
+  });
+
+  describe('Should be styled correctly', () => {
+    it('Should have footer styling applied in accordance with the design specs', () => {
+      const {component} = setup();
+
+      expect(component.find({style: {color: '#777'}})).to.have.length(1);
+      expect(component.find({style: {padding: '10px 15px'}})).to.have.length(1);
+      expect(component.find({style: {height: 20}})).to.have.length(1);
+      expect(component.find({style: {borderTop: '1px solid #e6e6e6'}})).to.have.length(1);
+    })
   })
 });

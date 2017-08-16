@@ -2,11 +2,22 @@
 
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import Radium from 'radium'
 
+@Radium
 export default class Footer extends Component {
   static propTypes = {
     todos: PropTypes.object,
     deleteCompletedTodos: PropTypes.func.isRequired
+  };
+
+  styles = {
+    footer: {
+      color: '#777',
+      padding: '10px 15px',
+      height: 20,
+      borderTop: '1px solid #e6e6e6'
+    }
   };
 
   static hasCompleted(todos) {
@@ -26,7 +37,7 @@ export default class Footer extends Component {
     const deleteCompletedTodos = this.props.deleteCompletedTodos;
 
     return (
-      <footer>
+      <footer style={this.styles.footer}>
         <label>The number of todos not completed: {Footer.countNotCompleted(todos)}</label>
         {Footer.hasCompleted(todos) && <button onClick={() => deleteCompletedTodos()}>delete completed</button>}
       </footer>
