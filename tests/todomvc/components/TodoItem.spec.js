@@ -163,6 +163,19 @@ describe('TodoItem component', () => {
       expect(checkbox.find({style: {textAlign: 'center'}})).to.have.length(1);
       expect(checkbox.find({style: {position: 'absolute'}})).to.have.length(1);
       expect(checkbox.find({style: {margin: 'auto 0'}})).to.have.length(1);
+    });
+
+    it('Should have ButtonUnchecked styling applied in accordance with the design specs', () => {
+      const {component} = setup();
+      const checkbox = component.children('svg');
+
+      expect(checkbox.find({style: {top: 0}})).to.have.length(1);
+      expect(checkbox.find({style: {bottom: 0}})).to.have.length(1);
+      expect(checkbox.find({style: {height: 'auto'}})).to.have.length(1);
+      expect(checkbox.find({style: {width: 40}})).to.have.length(1);
+      expect(checkbox.find({style: {textAlign: 'center'}})).to.have.length(1);
+      expect(checkbox.find({style: {position: 'absolute'}})).to.have.length(1);
+      expect(checkbox.find({style: {margin: 'auto 0'}})).to.have.length(1);
     })
   })
 });
