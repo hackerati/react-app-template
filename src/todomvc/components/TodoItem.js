@@ -57,6 +57,7 @@ export default class TodoItem extends Component {
       margin: 'auto 0',
       fontSize: 30,
       color: '#cc9a9a',
+      display: 'none',
       transition: 'color 0.2s ease-out',
       cursor: 'pointer',
       ':hover': {

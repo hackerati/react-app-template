@@ -24,7 +24,7 @@ const completedProps = {
   toggleCompleteOneTodo: sinon.spy()
 };
 
-function setup(props=defaultProps) {
+function setup(props = defaultProps) {
   const component = shallow(
     <TodoItem {...props} />
   );
@@ -219,6 +219,24 @@ describe('TodoItem component', () => {
       expect(div.find({style: {cursor: 'pointer'}})).to.have.length(1);
       expect(div.find({style: {margin: 'auto 0'}})).to.have.length(1);
       expect(div.find({style: {transition: 'color 0.2s ease-out'}})).to.have.length(1);
+    });
+
+    it('Should not display delete div initially', () => {
+      const {component} = setup();
+      const div = component.children('div');
+
+      expect(div.find({style: {position: 'absolute'}})).to.have.length(1);
+      expect(div.find({style: {top: 16}})).to.have.length(1);
+      expect(div.find({style: {right: 0}})).to.have.length(1);
+      expect(div.find({style: {bottom: 0}})).to.have.length(1);
+      expect(div.find({style: {width: 40}})).to.have.length(1);
+      expect(div.find({style: {height: 40}})).to.have.length(1);
+      expect(div.find({style: {fontSize: 30}})).to.have.length(1);
+      expect(div.find({style: {color: '#cc9a9a'}})).to.have.length(1);
+      expect(div.find({style: {cursor: 'pointer'}})).to.have.length(1);
+      expect(div.find({style: {margin: 'auto 0'}})).to.have.length(1);
+      expect(div.find({style: {transition: 'color 0.2s ease-out'}})).to.have.length(1);
+      expect(div.find({style: {display: 'none'}})).to.have.length(1);
     })
   })
 });
