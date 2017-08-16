@@ -75,8 +75,8 @@ export default class MainSection extends Component {
         <div style={this.styles.mainSectionDecoration}/>
         <section style={this.styles.mainSection}>
           <ul style={this.styles.todosList}>
-            {todos.map(todo => this.showTodo.bind(this)(todo.get('completed')) &&
-              <TodoItem key={todo.get('id')} todo={todo} {...actions} />)}
+            {todos.map((todo, index, arr) => this.showTodo.bind(this)(todo.get('completed')) &&
+              <TodoItem key={todo.get('id')} todo={todo} {...actions} isLast={index === arr.size - 1} />)}
           </ul>
           <input id="id_show_all"
                  type="radio"

@@ -1,12 +1,13 @@
 'use strict';
 
 import React from 'react'
-import {Map} from 'immutable'
+import {Map, List} from 'immutable'
 import uuid from 'uuid'
 import {expect} from 'chai'
-import {shallow} from 'enzyme'
+import {shallow, mount} from 'enzyme'
 import sinon from 'sinon'
 
+import MainSection from '../../../src/todomvc/components/MainSection'
 import TodoItem from '../../../src/todomvc/components/TodoItem'
 
 function setup() {
@@ -24,6 +25,26 @@ function setup() {
     component: component,
     props: props
   }
+}
+
+function setupMainSection() {
+  const props = {
+    todos: List([
+      Map({id: uuid.v4(), description: 'Use Redux', completed: false}),
+      Map({id: uuid.v4(), description: 'Use Redux 2', completed: true}),
+      Map({id: uuid.v4(), description: 'Use Redux 3', completed: true})
+    ]),
+    actions: {
+      editTodo: sinon.spy(),
+      deleteTodo: sinon.spy(),
+      toggleCompleteOneTodo: sinon.spy(),
+      deleteCompletedTodos: sinon.spy()
+    }
+  };
+
+  return mount(
+    <MainSection {...props} />
+  )
 }
 
 describe('TodoItem component', () => {
@@ -109,6 +130,18 @@ describe('TodoItem component', () => {
 
       svg.simulate('click');
       expect(props.toggleCompleteOneTodo.called).to.be.true
+    })
+  });
+
+  describe('Should be styled correctly', () => {
+    it('Should have li styling applied in accordance with the design specs', () => {
+      const componentMainSection = setupMainSection();
+      const items = componentMainSection.find('ul').children();
+
+      expect(items.find({style: {position: 'relative'}})).to.have.length(3);
+      expect(items.find({style: {fontSize: 20}})).to.have.length(3);
+      expect(items.find({style: {borderBottom: '1px solid #ededed'}})).to.have.length(2);
+      expect(items.find({style: {borderBottom: 'none'}})).to.have.length(1);
     })
   })
 });

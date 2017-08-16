@@ -2,15 +2,18 @@
 
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import Radium from 'radium'
 
 import TodoTextInput from './TodoTextInput'
 
+@Radium
 export default class TodoItem extends Component {
   static propTypes = {
     todo: PropTypes.object.isRequired,
     editTodo: PropTypes.func.isRequired,
     deleteTodo: PropTypes.func.isRequired,
-    toggleCompleteOneTodo: PropTypes.func.isRequired
+    toggleCompleteOneTodo: PropTypes.func.isRequired,
+    isLast: PropTypes.bool
   };
 
   constructor(props, context) {
@@ -52,10 +55,13 @@ export default class TodoItem extends Component {
   }
 
   renderTodoListItem() {
-    const {todo, deleteTodo} = this.props;
+    const {todo, deleteTodo, isLast} = this.props;
 
     return (
-      <li>
+      <li style={{position: 'relative',
+                  fontSize: 20,
+                  borderBottom: isLast ? 'none' : '1px solid #ededed',
+                  ':hover': {}}}>
         {todo.get('completed') ? this.renderButtonChecked() : this.renderButtonUnchecked()}
         <label onDoubleClick={this.handleDoubleClick.bind(this)}>
           {todo.get('description')}
