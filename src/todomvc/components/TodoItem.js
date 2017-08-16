@@ -45,6 +45,23 @@ export default class TodoItem extends Component {
       transition: 'color 0.4s',
       color: '#d9d9d9',
       textDecoration: 'line-through'
+    },
+
+    deleteButton: {
+      position: 'absolute',
+      top: 16,
+      right: 0,
+      bottom: 0,
+      width: 40,
+      height: 40,
+      margin: 'auto 0',
+      fontSize: 30,
+      color: '#cc9a9a',
+      transition: 'color 0.2s ease-out',
+      cursor: 'pointer',
+      ':hover': {
+        color: '#af5b5e',
+      }
     }
   };
 
@@ -99,7 +116,7 @@ export default class TodoItem extends Component {
                style={todo.get('completed') ? this.styles.todoLabelCompleted : this.styles.todoLabel}>
           {todo.get('description')}
         </label>
-        <div onClick={() => deleteTodo(todo.get('id'))}>x</div>
+        <div onClick={() => deleteTodo(todo.get('id'))} style={this.styles.deleteButton}>x</div>
       </li>
     )
   }

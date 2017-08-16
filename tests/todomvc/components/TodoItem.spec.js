@@ -202,6 +202,23 @@ describe('TodoItem component', () => {
       expect(label.find({style: {transition: 'color 0.4s'}})).to.have.length(1);
       expect(label.find({style: {color: '#d9d9d9'}})).to.have.length(1);
       expect(label.find({style: {textDecoration: 'line-through'}})).to.have.length(1);
+    });
+
+    it('Should have delete div styling applied in accordance with the design specs', () => {
+      const {component} = setup();
+      const div = component.children('div');
+
+      expect(div.find({style: {position: 'absolute'}})).to.have.length(1);
+      expect(div.find({style: {top: 16}})).to.have.length(1);
+      expect(div.find({style: {right: 0}})).to.have.length(1);
+      expect(div.find({style: {bottom: 0}})).to.have.length(1);
+      expect(div.find({style: {width: 40}})).to.have.length(1);
+      expect(div.find({style: {height: 40}})).to.have.length(1);
+      expect(div.find({style: {fontSize: 30}})).to.have.length(1);
+      expect(div.find({style: {color: '#cc9a9a'}})).to.have.length(1);
+      expect(div.find({style: {cursor: 'pointer'}})).to.have.length(1);
+      expect(div.find({style: {margin: 'auto 0'}})).to.have.length(1);
+      expect(div.find({style: {transition: 'color 0.2s ease-out'}})).to.have.length(1);
     })
   })
 });
