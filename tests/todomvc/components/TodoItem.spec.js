@@ -17,6 +17,13 @@ const defaultProps = {
   toggleCompleteOneTodo: sinon.spy()
 };
 
+const completedProps = {
+  todo: Map({id: uuid.v4(), description: 'Use Redux', completed: true}),
+  editTodo: sinon.spy(),
+  deleteTodo: sinon.spy(),
+  toggleCompleteOneTodo: sinon.spy()
+};
+
 function setup(props=defaultProps) {
   const component = shallow(
     <TodoItem {...props} />
@@ -146,13 +153,6 @@ describe('TodoItem component', () => {
     });
 
     it('Should have ButtonChecked styling applied in accordance with the design specs', () => {
-      const completedProps = {
-        todo: Map({id: uuid.v4(), description: 'Use Redux', completed: true}),
-        editTodo: sinon.spy(),
-        deleteTodo: sinon.spy(),
-        toggleCompleteOneTodo: sinon.spy()
-      };
-
       const {component} = setup(completedProps);
       const checkbox = component.children('svg');
 
@@ -188,6 +188,20 @@ describe('TodoItem component', () => {
       expect(label.find({style: {display: 'block'}})).to.have.length(1);
       expect(label.find({style: {lineHeight: 1}})).to.have.length(1);
       expect(label.find({style: {transition: 'color 0.4s'}})).to.have.length(1);
+    });
+
+    it('Should have label completed styling applied in accordance with the design specs', () => {
+      const {component} = setup(completedProps);
+      const label = component.children('label');
+
+      expect(label.find({style: {wordBreak: 'break-all'}})).to.have.length(1);
+      expect(label.find({style: {padding: '15px 60px 15px 15px'}})).to.have.length(1);
+      expect(label.find({style: {marginLeft: 45}})).to.have.length(1);
+      expect(label.find({style: {display: 'block'}})).to.have.length(1);
+      expect(label.find({style: {lineHeight: 1}})).to.have.length(1);
+      expect(label.find({style: {transition: 'color 0.4s'}})).to.have.length(1);
+      expect(label.find({style: {color: '#d9d9d9'}})).to.have.length(1);
+      expect(label.find({style: {textDecoration: 'line-through'}})).to.have.length(1);
     })
   })
 });

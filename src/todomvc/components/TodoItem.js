@@ -34,6 +34,17 @@ export default class TodoItem extends Component {
       display: 'block',
       lineHeight: 1,
       transition: 'color 0.4s'
+    },
+
+    todoLabelCompleted: {
+      wordBreak: 'break-all',
+      padding: '15px 60px 15px 15px',
+      marginLeft: 45,
+      display: 'block',
+      lineHeight: 1,
+      transition: 'color 0.4s',
+      color: '#d9d9d9',
+      textDecoration: 'line-through'
     }
   };
 
@@ -79,12 +90,13 @@ export default class TodoItem extends Component {
     const {todo, deleteTodo, isLast} = this.props;
 
     return (
-      <li style={{position: 'relative',
-                  fontSize: 20,
-                  borderBottom: isLast ? 'none' : '1px solid #ededed',
-                  ':hover': {}}}>
+      <li key={todo.get('id')}  style={{position: 'relative',
+                                        fontSize: 20,
+                                        borderBottom: isLast ? 'none' : '1px solid #ededed',
+                                        ':hover': {}}}>
         {todo.get('completed') ? this.renderButtonChecked() : this.renderButtonUnchecked()}
-        <label onDoubleClick={this.handleDoubleClick.bind(this)} style={this.styles.todoLabel}>
+        <label onDoubleClick={this.handleDoubleClick.bind(this)}
+               style={todo.get('completed') ? this.styles.todoLabelCompleted : this.styles.todoLabel}>
           {todo.get('description')}
         </label>
         <div onClick={() => deleteTodo(todo.get('id'))}>x</div>
