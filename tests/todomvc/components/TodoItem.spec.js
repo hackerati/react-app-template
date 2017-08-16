@@ -176,6 +176,18 @@ describe('TodoItem component', () => {
       expect(checkbox.find({style: {textAlign: 'center'}})).to.have.length(1);
       expect(checkbox.find({style: {position: 'absolute'}})).to.have.length(1);
       expect(checkbox.find({style: {margin: 'auto 0'}})).to.have.length(1);
+    });
+
+    it('Should have label not completed styling applied in accordance with the design specs', () => {
+      const {component} = setup();
+      const label = component.children('label');
+
+      expect(label.find({style: {wordBreak: 'break-all'}})).to.have.length(1);
+      expect(label.find({style: {padding: '15px 60px 15px 15px'}})).to.have.length(1);
+      expect(label.find({style: {marginLeft: 45}})).to.have.length(1);
+      expect(label.find({style: {display: 'block'}})).to.have.length(1);
+      expect(label.find({style: {lineHeight: 1}})).to.have.length(1);
+      expect(label.find({style: {transition: 'color 0.4s'}})).to.have.length(1);
     })
   })
 });

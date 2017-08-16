@@ -25,6 +25,15 @@ export default class TodoItem extends Component {
       textAlign: 'center',
       position: 'absolute',
       margin: 'auto 0'
+    },
+
+    todoLabel: {
+      wordBreak: 'break-all',
+      padding: '15px 60px 15px 15px',
+      marginLeft: 45,
+      display: 'block',
+      lineHeight: 1,
+      transition: 'color 0.4s'
     }
   };
 
@@ -75,7 +84,7 @@ export default class TodoItem extends Component {
                   borderBottom: isLast ? 'none' : '1px solid #ededed',
                   ':hover': {}}}>
         {todo.get('completed') ? this.renderButtonChecked() : this.renderButtonUnchecked()}
-        <label onDoubleClick={this.handleDoubleClick.bind(this)}>
+        <label onDoubleClick={this.handleDoubleClick.bind(this)} style={this.styles.todoLabel}>
           {todo.get('description')}
         </label>
         <div onClick={() => deleteTodo(todo.get('id'))}>x</div>
