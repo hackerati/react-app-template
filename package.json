@@ -4,7 +4,7 @@
   "description": "Application template for React`",
   "main": "server.js",
   "scripts": {
-    "test": "eslint ./src; mocha tests --compilers js:babel-core/register --require ./tests/test_helper.js  --recursive",
+    "test": "eslint ./src ./tests && mocha tests --compilers js:babel-core/register --require ./tests/test_helper.js  --recursive",
     "build": "webpack --config webpack.config.prod.js --progress --profile --colors",
     "start": "node server"
   },
