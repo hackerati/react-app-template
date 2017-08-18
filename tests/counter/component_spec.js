@@ -43,7 +43,7 @@ describe('Counter component', () => {
   });
 
   it('third button should not call increment if the counter is even', () => {
-    const {p, buttons, actions} = setup(42);
+    const {buttons, actions} = setup(42);
     buttons.at(2).simulate('click');
     expect(actions.increment.called).to.be.false
   });
