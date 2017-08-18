@@ -38,7 +38,7 @@ And then open http://localhost:4000 in your browser
 
 ## Tutorial
 
-If you're new you React + Redux, try our [tutorial](https://www.gitbook.com/book/hackerati/react-tutorial/details) on a TDD approach to a simple TodoMVC application.
+If you're new you React + Redux, try our [tutorial](https://www.gitbook.com/book/hackerati/react-tutorial/details) on a TDD approach to a simple TodoMVC application. Start reading the tutorial by clicking on the green 'Read' button.
 
 ## What's inside
 
