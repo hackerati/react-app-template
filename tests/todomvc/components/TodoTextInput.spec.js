@@ -37,7 +37,7 @@ describe('TodoTextInput component', () => {
 
   describe('Should behave correctly', () => {
     it('Should update value on change', () => {
-      const {props, component} = setup();
+      const {component} = setup();
 
       component.find('input').at(0).simulate('change', {target: {value: 'todo'}});
       expect(component.find('input').at(0).prop('value')).to.equal('todo')
@@ -55,7 +55,7 @@ describe('TodoTextInput component', () => {
     });
 
     it('Should reset state on return key press if isNew', () => {
-      const {props, component} = setup({isNew: true});
+      const {component} = setup({isNew: true});
 
       component.find('input').at(0).simulate('keydown', {
         which: 13, // RETURN KEY
