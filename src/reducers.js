@@ -1,10 +1,10 @@
 'use strict';
 
 import {combineReducers} from 'redux'
-import counter from './counter'
+import todomvc from './todomvc'
 
 const rootReducer = combineReducers({
-  counter: counter.reducer
+  todos: todomvc.reducer
 });
 
 export default rootReducer

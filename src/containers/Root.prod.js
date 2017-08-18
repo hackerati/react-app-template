@@ -2,7 +2,7 @@
 
 import React, {Component} from 'react'
 import {Provider} from 'react-redux'
-import {CounterApp} from '../counter'
+import {TodoApp} from '../todomvc'
 import PropTypes from '../PropTypes'
 
 class Root extends Component {
@@ -10,7 +10,7 @@ class Root extends Component {
     const {store} = this.props;
     return (
       <Provider store={store}>
-        <CounterApp/>
+        <TodoApp/>
       </Provider>
     )
   }
